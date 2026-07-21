@@ -1,0 +1,44 @@
+---
+/*
+  QuantitySelector.astro
+  --------------------------------------------------
+  Selector de cantidad con botones ➕ / ➖.
+  Se usa como referencia visual/markup: como los items del
+  carrito se pintan dinámicamente con JavaScript (porque
+  dependen de localStorage, que no existe en el servidor),
+  el HTML que genera CartSidebar.astro y carrito.astro por JS
+  reutiliza esta MISMA estructura de clases para que los
+  estilos de abajo apliquen en ambos casos.
+
+  Si en el futuro se agrega un selector de cantidad "estático"
+  (por ejemplo en una página de detalle de producto renderizada
+  en servidor), se puede usar este componente directamente.
+--------------------------------------------------
+*/
+interface Props {
+  idProducto: number;
+  cantidad: number;
+}
+
+const { idProducto, cantidad } = Astro.props;
+---
+
+<div class="selector-cantidad" data-selector-cantidad={idProducto}>
+  <button class="btn-icono" data-restar={idProducto} aria-label="Restar una unidad">➖</button>
+  <span class="selector-cantidad__valor" data-cantidad-valor={idProducto}>{cantidad}</span>
+  <button class="btn-icono" data-sumar={idProducto} aria-label="Sumar una unidad">➕</button>
+</div>
+
+<style>
+  .selector-cantidad {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .selector-cantidad__valor {
+    min-width: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+  }
+</style>

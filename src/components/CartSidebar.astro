@@ -1,0 +1,318 @@
+---
+/*
+  CartSidebar.astro
+  --------------------------------------------------
+  Panel lateral (drawer) del carrito. Vive en Layout.astro
+  por fuera del <slot />, así puede abrirse desde CUALQUIER
+  página sin tener que navegar.
+
+  Cómo se abre/cierra:
+  - Navbar.astro dispara el evento "carrito:abrir" al hacer
+    click en el ícono del carrito.
+  - Este componente escucha ese evento y agrega la clase
+    "abierto" al panel + overlay.
+  - Se cierra con el botón ✕, clickeando el overlay, o con
+    la tecla Escape.
+
+  El contenido de los items se pinta 100% con JavaScript,
+  porque el carrito vive en localStorage (no existe en el
+  servidor durante el build). Cada vez que cambia el carrito
+  (evento "carrito:actualizado"), se vuelve a pintar.
+--------------------------------------------------
+*/
+---
+
+<div id="overlay-carrito" class="overlay-carrito" hidden></div>
+
+<aside id="panel-carrito" class="panel-carrito" aria-hidden="true" aria-label="Carrito de compras">
+  <header class="panel-carrito__header">
+    <h2>🧾 Tu carrito</h2>
+    <button id="btn-cerrar-carrito" class="btn-icono" aria-label="Cerrar carrito">✕</button>
+  </header>
+
+  <div id="panel-carrito__contenido" class="panel-carrito__contenido">
+    <!-- Se llena dinámicamente con JS -->
+  </div>
+
+  <footer class="panel-carrito__footer">
+    <div class="panel-carrito__total">
+      <span>Total</span>
+      <strong id="panel-carrito__total-valor">$0</strong>
+    </div>
+    <button id="btn-vaciar-carrito" class="btn btn-outline btn-bloque btn-sm">Vaciar carrito</button>
+    <button id="btn-enviar-pedido" class="btn btn-whatsapp btn-bloque">🟢 Enviar pedido por WhatsApp</button>
+    <a href="/carrito" class="panel-carrito__ver-mas">Ver carrito completo</a>
+  </footer>
+</aside>
+
+<style>
+  .overlay-carrito {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(15, 23, 42, 0.45);
+    z-index: 50;
+    opacity: 0;
+    transition: opacity var(--transicion-normal);
+  }
+
+  .overlay-carrito.abierto {
+    opacity: 1;
+  }
+
+  .panel-carrito {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: min(400px, 92vw);
+    background-color: var(--color-tarjeta);
+    z-index: 51;
+    box-shadow: var(--sombra-lg);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform var(--transicion-normal);
+  }
+
+  .panel-carrito.abierto {
+    transform: translateX(0);
+  }
+
+  .panel-carrito__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid var(--color-borde);
+  }
+
+  .panel-carrito__contenido {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .panel-carrito__footer {
+    padding: var(--space-md) var(--space-lg) var(--space-lg);
+    border-top: 1px solid var(--color-borde);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .panel-carrito__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--fs-lg);
+    margin-bottom: 0.25rem;
+  }
+
+  .panel-carrito__ver-mas {
+    text-align: center;
+    font-size: var(--fs-sm);
+    color: var(--color-primario);
+    font-weight: 600;
+    padding-top: 0.25rem;
+  }
+
+  .panel-carrito__ver-mas:hover {
+    text-decoration: underline;
+  }
+
+  /* Item individual dentro del carrito (pintado por JS) */
+  :global(.item-carrito) {
+    display: flex;
+    gap: var(--space-sm);
+    align-items: center;
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid var(--color-borde);
+  }
+
+  :global(.item-carrito__imagen) {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radio-sm);
+    overflow: hidden;
+    flex-shrink: 0;
+    background-color: var(--color-fondo);
+  }
+
+  :global(.item-carrito__imagen img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  :global(.item-carrito__info) {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 0;
+  }
+
+  :global(.item-carrito__nombre) {
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  :global(.item-carrito__precio) {
+    font-size: var(--fs-xs);
+    color: var(--color-texto-secundario);
+  }
+
+  :global(.item-carrito__acciones) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.25rem;
+  }
+
+  :global(.item-carrito__eliminar) {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: var(--color-texto-secundario);
+  }
+
+  :global(.item-carrito__eliminar:hover) {
+    color: var(--color-error);
+  }
+
+  :global(.selector-cantidad) {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  :global(.selector-cantidad button) {
+    width: 1.75rem;
+    height: 1.75rem;
+    font-size: 0.85rem;
+  }
+</style>
+
+<script>
+  // -------------------------------------------------------
+  // Lógica del panel lateral del carrito
+  // -------------------------------------------------------
+  const overlay = document.getElementById('overlay-carrito');
+  const panel = document.getElementById('panel-carrito');
+  const btnCerrar = document.getElementById('btn-cerrar-carrito');
+  const btnVaciar = document.getElementById('btn-vaciar-carrito');
+  const btnEnviar = document.getElementById('btn-enviar-pedido');
+  const contenedor = document.getElementById('panel-carrito__contenido');
+  const totalValor = document.getElementById('panel-carrito__total-valor');
+
+  function abrirPanel() {
+    overlay.hidden = false;
+    requestAnimationFrame(() => {
+      overlay.classList.add('abierto');
+      panel.classList.add('abierto');
+    });
+    panel.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function cerrarPanel() {
+    overlay.classList.remove('abierto');
+    panel.classList.remove('abierto');
+    panel.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(() => {
+      overlay.hidden = true;
+    }, 250);
+  }
+
+  window.addEventListener('carrito:abrir', abrirPanel);
+  btnCerrar?.addEventListener('click', cerrarPanel);
+  overlay?.addEventListener('click', cerrarPanel);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') cerrarPanel();
+  });
+
+  // Renderiza el listado de items dentro del panel
+  async function renderizarCarrito() {
+    if (!window.Carrito || !contenedor) return;
+    const items = await window.Carrito.obtenerItemsDetallados();
+    const total = items.reduce((acc, i) => acc + i.precio * i.cantidad, 0);
+
+    totalValor.textContent = window.Carrito.formatearPrecio(total);
+    btnEnviar.disabled = items.length === 0;
+    btnVaciar.disabled = items.length === 0;
+
+    if (items.length === 0) {
+      contenedor.innerHTML = `
+        <div class="estado-vacio">
+          <div class="emoji-grande">🛒</div>
+          <p>Tu carrito está vacío.</p>
+        </div>
+      `;
+      return;
+    }
+
+    contenedor.innerHTML = items
+      .map(
+        (item) => `
+        <div class="item-carrito" data-item-carrito="${item.id}">
+          <div class="item-carrito__imagen">
+            <img src="${item.imagen}" alt="${item.nombre}" loading="lazy" />
+          </div>
+          <div class="item-carrito__info">
+            <span class="item-carrito__nombre">${item.nombre}</span>
+            <span class="item-carrito__precio">${window.Carrito.formatearPrecio(item.precio)} c/u</span>
+            <div class="item-carrito__acciones">
+              <div class="selector-cantidad" data-selector-cantidad="${item.id}">
+                <button class="btn-icono" data-restar="${item.id}" aria-label="Restar una unidad">➖</button>
+                <span class="selector-cantidad__valor">${item.cantidad}</span>
+                <button class="btn-icono" data-sumar="${item.id}" aria-label="Sumar una unidad">➕</button>
+              </div>
+              <button class="item-carrito__eliminar" data-eliminar-item="${item.id}" aria-label="Eliminar producto">🗑️</button>
+            </div>
+          </div>
+        </div>
+      `
+      )
+      .join('');
+  }
+
+  // Delegación de eventos para +/- y eliminar (dentro del panel)
+  contenedor?.addEventListener('click', (evento) => {
+    const target = evento.target;
+    const idSumar = target.closest('[data-sumar]')?.dataset.sumar;
+    const idRestar = target.closest('[data-restar]')?.dataset.restar;
+    const idEliminar = target.closest('[data-eliminar-item]')?.dataset.eliminarItem;
+
+    if (idSumar) {
+      window.Carrito.agregar(Number(idSumar), 1);
+    } else if (idRestar) {
+      const items = window.Carrito.obtener();
+      const item = items.find((i) => i.id === Number(idRestar));
+      if (item) window.Carrito.actualizarCantidad(Number(idRestar), item.cantidad - 1);
+    } else if (idEliminar) {
+      window.Carrito.eliminar(Number(idEliminar));
+    }
+  });
+
+  btnVaciar?.addEventListener('click', () => {
+    if (confirm('¿Vaciar todo el carrito?')) {
+      window.Carrito.vaciar();
+    }
+  });
+
+  btnEnviar?.addEventListener('click', async () => {
+    await window.Carrito.enviarPedidoPorWhatsapp();
+  });
+
+  window.addEventListener('carrito:actualizado', renderizarCarrito);
+  window.addEventListener('DOMContentLoaded', renderizarCarrito);
+  renderizarCarrito();
+</script>

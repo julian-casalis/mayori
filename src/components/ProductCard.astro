@@ -1,20 +1,105 @@
 ---
+/*
+  ProductCard.astro
+  --------------------------------------------------
+  Tarjeta individual de producto. Se usa en el home
+  (destacados/nuevos), en /productos y en /categoria/[slug].
+
+  El botón "Agregar al carrito" llama a `window.Carrito.agregar()`
+  (definido en cart.js) y dispara una animación corta en la
+  tarjeta para dar feedback visual inmediato.
+
+  Recibe el producto completo como prop (ver forma en
+  src/data/productos.json).
+--------------------------------------------------
+*/
+interface Producto {
+  id: number;
+  nombre: string;
+  categoria: string;
+  precio: number;
+  stock?: number;
+  descripcion?: string;
+  imagen: string;
+  destacado?: boolean;
+  nuevo?: boolean;
+}
+
+interface Props {
+  producto: Producto;
+}
+
 const { producto } = Astro.props;
+
+const formateador = new Intl.NumberFormat('es-AR', {
+  style: 'currency',
+  currency: 'ARS',
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
 ---
 
-<div class="card">
-  <img src={producto.imagen} alt={producto.nombre} />
+<article class="tarjeta-producto fade-in" data-tarjeta-producto={producto.id}>
+  {producto.nuevo && <span class="badge badge-nuevo">Nuevo</span>}
+  {!producto.nuevo && producto.destacado && <span class="badge badge-destacado">⭐ Top</span>}
 
-  <h3>{producto.nombre}</h3>
+  <div class="tarjeta-producto__imagen-wrap">
+    <img src={producto.imagen} alt={producto.nombre} loading="lazy" width="400" height="400" />
+  </div>
 
-  <p>$ {producto.precio}</p>
+  <div class="tarjeta-producto__cuerpo">
+    <span class="tarjeta-producto__categoria">{producto.categoria}</span>
+    <h3 class="tarjeta-producto__nombre">{producto.nombre}</h3>
+    {producto.stock !== undefined && (
+      <span class="tarjeta-producto__stock">
+        {producto.stock > 0 ? `📦 Stock disponible` : '⚠️ Sin stock'}
+      </span>
+    )}
+    <span class="tarjeta-producto__precio">{formateador.format(producto.precio)}</span>
+  </div>
 
-  <button
-    class="agregar"
-    data-id={producto.id}
-    data-nombre={producto.nombre}
-    data-precio={producto.precio}
-  >
-    Agregar
-  </button>
-</div>
+  <div class="tarjeta-producto__pie">
+    <button
+      class="btn btn-primario btn-bloque btn-agregar"
+      data-agregar-carrito={producto.id}
+      aria-label={`Agregar ${producto.nombre} al carrito`}
+    >
+      ➕ Agregar
+    </button>
+  </div>
+</article>
+
+<script>
+  // Delegación de eventos: un solo listener en el documento maneja
+  // TODOS los botones "Agregar al carrito" de la página, sin importar
+  // cuántas tarjetas de producto haya. Esto evita tener que re-inicializar
+  // listeners cuando la grilla se re-renderiza (ej: al filtrar).
+  if (!window.__listenerAgregarCarritoInicializado) {
+    window.__listenerAgregarCarritoInicializado = true;
+
+    document.addEventListener('click', (evento) => {
+      const boton = evento.target.closest('[data-agregar-carrito]');
+      if (!boton || !window.Carrito) return;
+
+      const id = Number(boton.dataset.agregarCarrito);
+      window.Carrito.agregar(id, 1);
+
+      // Feedback visual: pulso en la tarjeta + texto momentáneo en el botón
+      const tarjeta = boton.closest('[data-tarjeta-producto]');
+      if (tarjeta) {
+        tarjeta.classList.remove('agregado');
+        // Forzamos reflow para poder re-disparar la animación
+        void tarjeta.offsetWidth;
+        tarjeta.classList.add('agregado');
+      }
+
+      const textoOriginal = boton.textContent;
+      boton.textContent = '✅ Agregado';
+      boton.disabled = true;
+      setTimeout(() => {
+        boton.textContent = textoOriginal;
+        boton.disabled = false;
+      }, 900);
+    });
+  }
+</script>

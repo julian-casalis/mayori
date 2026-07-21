@@ -1,0 +1,85 @@
+---
+/*
+  contacto.astro
+  --------------------------------------------------
+  Página de contacto. No hay formulario que envíe datos
+  a ningún servidor (recordemos: no hay backend). En cambio,
+  se ofrecen accesos directos a WhatsApp, teléfono y ubicación.
+--------------------------------------------------
+*/
+import Layout from '../layouts/Layout.astro';
+
+const numeroWhatsapp = '5493400000000';
+const mensaje = 'Hola! Quería hacer una consulta.';
+const urlWhatsapp = `https://wa.me/${numeroWhatsapp}?text=${encodeURIComponent(mensaje)}`;
+---
+
+<Layout title="Contacto — La Distribuidora">
+  <section class="seccion contenedor contacto">
+    <h1 class="seccion-titulo">Contacto</h1>
+    <p class="seccion-subtitulo">Estamos para ayudarte</p>
+
+    <div class="contacto__grid">
+      <a href={urlWhatsapp} target="_blank" rel="noopener" class="contacto__tarjeta">
+        <span class="contacto__icono">🟢</span>
+        <h3>WhatsApp</h3>
+        <p>Respuesta rápida para pedidos y consultas</p>
+      </a>
+
+      <a href={`tel:+${numeroWhatsapp}`} class="contacto__tarjeta">
+        <span class="contacto__icono">☎</span>
+        <h3>Teléfono</h3>
+        <p>+54 9 3400 000-000</p>
+      </a>
+
+      <div class="contacto__tarjeta">
+        <span class="contacto__icono">📍</span>
+        <h3>Ubicación</h3>
+        <p>Reconquista, Santa Fe, Argentina</p>
+      </div>
+
+      <div class="contacto__tarjeta">
+        <span class="contacto__icono">🕒</span>
+        <h3>Horarios</h3>
+        <p>Lunes a sábado de 8 a 21 hs</p>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contacto__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .contacto__tarjeta {
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-lg);
+    padding: var(--space-lg);
+    text-align: center;
+    transition: transform var(--transicion-normal), box-shadow var(--transicion-normal);
+  }
+
+  .contacto__tarjeta:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-md);
+  }
+
+  .contacto__icono {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  .contacto__tarjeta h3 {
+    margin-bottom: 0.35rem;
+  }
+
+  .contacto__tarjeta p {
+    color: var(--color-texto-secundario);
+    font-size: var(--fs-sm);
+  }
+</style>

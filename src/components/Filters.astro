@@ -1,0 +1,132 @@
+---
+/*
+  Filters.astro
+  --------------------------------------------------
+  Barra de filtros para /productos y /categoria/[slug].
+  Permite filtrar por categoría, rango de precio y ordenar
+  el listado.
+
+  Cada vez que el usuario cambia algo, este componente
+  dispara el evento global "filtros:cambio" con el detalle
+  {categoria, precioMin, precioMax, orden}. La página que
+  contiene la grilla de productos escucha ese evento y
+  vuelve a pintar los resultados (ver script en productos.astro).
+
+  Prop `categoriaFija`: si se pasa (ej: desde /categoria/bebidas),
+  se oculta el selector de categoría porque ya está implícita
+  en la página.
+--------------------------------------------------
+*/
+import categorias from '../data/categorias.json';
+
+interface Props {
+  categoriaFija?: string;
+}
+
+const { categoriaFija } = Astro.props;
+---
+
+<div class="filtros">
+  {!categoriaFija && (
+    <div class="filtros__grupo">
+      <label for="filtro-categoria">📂 Categoría</label>
+      <select id="filtro-categoria" data-filtro="categoria">
+        <option value="">Todas</option>
+        {categorias.map((cat) => (
+          <option value={cat.id}>{cat.emoji} {cat.nombre}</option>
+        ))}
+      </select>
+    </div>
+  )}
+
+  <div class="filtros__grupo">
+    <label for="filtro-precio-min">💲 Precio mín.</label>
+    <input type="number" id="filtro-precio-min" data-filtro="precioMin" min="0" placeholder="0" />
+  </div>
+
+  <div class="filtros__grupo">
+    <label for="filtro-precio-max">💲 Precio máx.</label>
+    <input type="number" id="filtro-precio-max" data-filtro="precioMax" min="0" placeholder="Sin límite" />
+  </div>
+
+  <div class="filtros__grupo">
+    <label for="filtro-orden">↕ Ordenar por</label>
+    <select id="filtro-orden" data-filtro="orden">
+      <option value="relevancia">Relevancia</option>
+      <option value="mas-barato">Más barato</option>
+      <option value="mas-caro">Más caro</option>
+      <option value="nombre-az">Nombre A-Z</option>
+      <option value="nombre-za">Nombre Z-A</option>
+    </select>
+  </div>
+</div>
+
+<style>
+  .filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    align-items: flex-end;
+    padding: var(--space-md);
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-lg);
+    margin-bottom: var(--space-lg);
+  }
+
+  .filtros__grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    min-width: 140px;
+  }
+
+  .filtros__grupo label {
+    font-size: var(--fs-xs);
+    color: var(--color-texto-secundario);
+    font-weight: 600;
+  }
+
+  .filtros__grupo select,
+  .filtros__grupo input {
+    padding: 0.5rem 0.6rem;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-sm);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+  }
+
+  .filtros__grupo select:focus,
+  .filtros__grupo input:focus {
+    outline: none;
+    border-color: var(--color-primario);
+  }
+
+  @media (max-width: 600px) {
+    .filtros {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+</style>
+
+<script>
+  function emitirCambioFiltros() {
+    const detalle = {
+      categoria: document.getElementById('filtro-categoria')?.value ?? '',
+      precioMin: document.getElementById('filtro-precio-min')?.value ?? '',
+      precioMax: document.getElementById('filtro-precio-max')?.value ?? '',
+      orden: document.getElementById('filtro-orden')?.value ?? 'relevancia',
+    };
+    window.dispatchEvent(new CustomEvent('filtros:cambio', { detail: detalle }));
+  }
+
+  document.querySelectorAll('[data-filtro]').forEach((campo) => {
+    campo.addEventListener('change', emitirCambioFiltros);
+    campo.addEventListener('input', () => {
+      // Debounce corto para los inputs numéricos de precio
+      clearTimeout(campo._temporizador);
+      campo._temporizador = setTimeout(emitirCambioFiltros, 300);
+    });
+  });
+</script>

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "golosinas",
+    "nombre": "Golosinas",
+    "emoji": "🍬",
+    "descripcion": "Caramelos, chupetines y masticables"
+  },
+  {
+    "id": "galletitas",
+    "nombre": "Galletitas",
+    "emoji": "🍪",
+    "descripcion": "Dulces y saladas, para todos los gustos"
+  },
+  {
+    "id": "bebidas",
+    "nombre": "Bebidas",
+    "emoji": "🥤",
+    "descripcion": "Gaseosas, aguas y bebidas frías"
+  },
+  {
+    "id": "jugos",
+    "nombre": "Jugos",
+    "emoji": "🧃",
+    "descripcion": "Jugos exprimidos y en polvo"
+  },
+  {
+    "id": "libreria",
+    "nombre": "Librería",
+    "emoji": "📚",
+    "descripcion": "Cuadernos, lapiceras y útiles"
+  },
+  {
+    "id": "chocolates",
+    "nombre": "Chocolates",
+    "emoji": "🍫",
+    "descripcion": "Chocolates y alfajores"
+  },
+  {
+    "id": "snacks",
+    "nombre": "Snacks",
+    "emoji": "🍟",
+    "descripcion": "Papas fritas y snacks salados"
+  },
+  {
+    "id": "varios",
+    "nombre": "Varios",
+    "emoji": "🧉",
+    "descripcion": "Productos varios de almacén"
+  }
+]

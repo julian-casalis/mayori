@@ -1,0 +1,53 @@
+---
+/*
+  FloatingWhatsApp.astro
+  --------------------------------------------------
+  Botón flotante fijo en la esquina inferior derecha,
+  visible en todas las páginas, para contacto directo
+  y rápido (no depende del carrito).
+
+  👉 Usa el mismo número definido en cart.js
+     (constante NUMERO_WHATSAPP). Si lo cambiás, actualizá
+     el número acá también para que quede consistente.
+--------------------------------------------------
+*/
+const numero = '5493400000000';
+const mensaje = 'Hola! Quería consultar sobre productos de la distribuidora.';
+const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+---
+
+<a href={url} target="_blank" rel="noopener" class="whatsapp-flotante" aria-label="Contactar por WhatsApp">
+  🟢
+</a>
+
+<style>
+  .whatsapp-flotante {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radio-full);
+    background-color: #25d366;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    box-shadow: var(--sombra-lg);
+    z-index: 45;
+    transition: transform var(--transicion-rapida);
+  }
+
+  .whatsapp-flotante:hover {
+    transform: scale(1.08);
+  }
+
+  @media (max-width: 600px) {
+    .whatsapp-flotante {
+      bottom: var(--space-md);
+      right: var(--space-md);
+      width: 50px;
+      height: 50px;
+    }
+  }
+</style>

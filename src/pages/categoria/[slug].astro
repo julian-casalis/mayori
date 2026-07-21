@@ -1,0 +1,179 @@
+---
+/*
+  categoria/[slug].astro
+  --------------------------------------------------
+  Página dinámica: Astro genera UNA página estática por
+  cada categoría definida en categorias.json (ej: /categoria/bebidas,
+  /categoria/golosinas, etc) gracias a getStaticPaths().
+
+  👉 Para agregar una categoría nueva no hace falta tocar
+     este archivo: alcanza con agregarla en categorias.json
+     y Astro genera la página automáticamente en el próximo build.
+--------------------------------------------------
+*/
+import Layout from '../../layouts/Layout.astro';
+import SearchBar from '../../components/SearchBar.astro';
+import Filters from '../../components/Filters.astro';
+import ProductCard from '../../components/ProductCard.astro';
+import categoriasData from '../../data/categorias.json';
+import productosData from '../../data/productos.json';
+
+export function getStaticPaths() {
+  return categoriasData.map((categoria) => ({
+    params: { slug: categoria.id },
+    props: { categoria },
+  }));
+}
+
+const { categoria } = Astro.props;
+const productosCategoria = productosData.filter((p) => p.categoria === categoria.id);
+---
+
+<Layout title={`${categoria.nombre} — La Distribuidora`}>
+  <section class="seccion contenedor">
+    <a href="/productos" class="volver">← Ver todo el catálogo</a>
+    <h1 class="seccion-titulo">{categoria.emoji} {categoria.nombre}</h1>
+    <p class="seccion-subtitulo">{categoria.descripcion}</p>
+
+    <div class="productos__buscador">
+      <SearchBar variante="pagina" id="buscador-categoria" />
+    </div>
+
+    <Filters categoriaFija={categoria.id} />
+
+    <p id="productos__contador" class="productos__contador"></p>
+
+    <div id="grilla-productos" class="grilla-productos">
+      {productosCategoria.map((producto) => <ProductCard producto={producto} />)}
+    </div>
+
+    <div id="productos__vacio" class="estado-vacio" hidden>
+      <div class="emoji-grande">🔍</div>
+      <p>No encontramos productos con esos filtros en esta categoría.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .volver {
+    display: inline-block;
+    color: var(--color-primario);
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .volver:hover {
+    text-decoration: underline;
+  }
+
+  .productos__buscador {
+    max-width: 480px;
+    margin-bottom: var(--space-md);
+  }
+
+  .productos__contador {
+    color: var(--color-texto-secundario);
+    font-size: var(--fs-sm);
+    margin-bottom: var(--space-md);
+  }
+</style>
+
+<script define:vars={{ productosCategoria }}>
+  // Misma lógica de filtrado que en /productos, pero acotada a
+  // los productos de esta categoría (la categoría ya está fija).
+  const grilla = document.getElementById('grilla-productos');
+  const vacio = document.getElementById('productos__vacio');
+  const contador = document.getElementById('productos__contador');
+
+  let estado = { texto: '', precioMin: '', precioMax: '', orden: 'relevancia' };
+
+  function formatearPrecio(numero) {
+    return new Intl.NumberFormat('es-AR', {
+      style: 'currency',
+      currency: 'ARS',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(numero);
+  }
+
+  function tarjetaHTML(producto) {
+    const badge = producto.nuevo
+      ? `<span class="badge badge-nuevo">Nuevo</span>`
+      : producto.destacado
+        ? `<span class="badge badge-destacado">⭐ Top</span>`
+        : '';
+    const stockTexto =
+      producto.stock !== undefined
+        ? `<span class="tarjeta-producto__stock">${producto.stock > 0 ? '📦 Stock disponible' : '⚠️ Sin stock'}</span>`
+        : '';
+    return `
+      <article class="tarjeta-producto fade-in" data-tarjeta-producto="${producto.id}">
+        ${badge}
+        <div class="tarjeta-producto__imagen-wrap">
+          <img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy" width="400" height="400" />
+        </div>
+        <div class="tarjeta-producto__cuerpo">
+          <span class="tarjeta-producto__categoria">${producto.categoria}</span>
+          <h3 class="tarjeta-producto__nombre">${producto.nombre}</h3>
+          ${stockTexto}
+          <span class="tarjeta-producto__precio">${formatearPrecio(producto.precio)}</span>
+        </div>
+        <div class="tarjeta-producto__pie">
+          <button class="btn btn-primario btn-bloque btn-agregar" data-agregar-carrito="${producto.id}" aria-label="Agregar ${producto.nombre} al carrito">
+            ➕ Agregar
+          </button>
+        </div>
+      </article>
+    `;
+  }
+
+  function aplicarFiltros() {
+    let resultado = [...productosCategoria];
+
+    if (estado.texto.trim()) {
+      const q = estado.texto.trim().toLowerCase();
+      resultado = resultado.filter(
+        (p) =>
+          p.nombre.toLowerCase().includes(q) ||
+          (p.descripcion && p.descripcion.toLowerCase().includes(q))
+      );
+    }
+
+    if (estado.precioMin !== '') resultado = resultado.filter((p) => p.precio >= Number(estado.precioMin));
+    if (estado.precioMax !== '') resultado = resultado.filter((p) => p.precio <= Number(estado.precioMax));
+
+    switch (estado.orden) {
+      case 'mas-barato': resultado.sort((a, b) => a.precio - b.precio); break;
+      case 'mas-caro': resultado.sort((a, b) => b.precio - a.precio); break;
+      case 'nombre-az': resultado.sort((a, b) => a.nombre.localeCompare(b.nombre)); break;
+      case 'nombre-za': resultado.sort((a, b) => b.nombre.localeCompare(a.nombre)); break;
+    }
+
+    renderizar(resultado);
+  }
+
+  function renderizar(lista) {
+    contador.textContent = `${lista.length} producto${lista.length === 1 ? '' : 's'} encontrado${lista.length === 1 ? '' : 's'}`;
+    if (lista.length === 0) {
+      grilla.hidden = true;
+      vacio.hidden = false;
+      return;
+    }
+    grilla.hidden = false;
+    vacio.hidden = true;
+    grilla.innerHTML = lista.map(tarjetaHTML).join('');
+  }
+
+  window.addEventListener('buscar:input', (e) => {
+    estado.texto = e.detail.texto;
+    aplicarFiltros();
+  });
+
+  window.addEventListener('filtros:cambio', (e) => {
+    estado = { ...estado, ...e.detail };
+    aplicarFiltros();
+  });
+
+  aplicarFiltros();
+</script>

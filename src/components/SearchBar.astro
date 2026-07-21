@@ -1,0 +1,115 @@
+---
+/*
+  SearchBar.astro
+  --------------------------------------------------
+  Buscador reutilizable. Se usa en el Navbar (desktop y
+  mobile) y también arriba del listado en /productos.
+
+  Cómo funciona la búsqueda "en vivo":
+  - Cada vez que el usuario tipea, este componente dispara
+    un evento global `buscar:input` con el texto ingresado.
+  - La página /productos.astro escucha ese evento y filtra
+    la grilla de productos sin recargar la página.
+  - Si el buscador está en el Navbar (o sea, en una página
+    que no es /productos), al presionar Enter redirige a
+    /productos?buscar=TEXTO para mostrar los resultados ahí.
+
+  Props:
+  - variante: "navbar" | "pagina" -> cambia el tamaño/estilo
+  - valorInicial: para precargar el texto (ej: desde la URL)
+  - id: identificador único del input (útil porque puede haber
+    más de un SearchBar en la misma página: navbar desktop +
+    navbar mobile)
+--------------------------------------------------
+*/
+interface Props {
+  variante?: 'navbar' | 'pagina';
+  valorInicial?: string;
+  id?: string;
+}
+
+const { variante = 'navbar', valorInicial = '', id = 'buscador' } = Astro.props;
+---
+
+<div class:list={['buscador', `buscador--${variante}`]}>
+  <span class="buscador__icono" aria-hidden="true">🔍</span>
+  <input
+    type="search"
+    id={id}
+    class="buscador__input"
+    placeholder="Buscar productos..."
+    value={valorInicial}
+    aria-label="Buscar productos"
+    data-buscador
+  />
+</div>
+
+<style>
+  .buscador {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-full);
+    padding: 0.5rem 1rem;
+    transition: border-color var(--transicion-rapida), box-shadow var(--transicion-rapida);
+  }
+
+  .buscador:focus-within {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  }
+
+  .buscador__icono {
+    font-size: 0.95rem;
+    opacity: 0.7;
+  }
+
+  .buscador__input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 100%;
+    color: var(--color-texto);
+  }
+
+  .buscador--pagina {
+    max-width: 480px;
+  }
+</style>
+
+<script>
+  // Cada input con [data-buscador] emite el evento "buscar:input"
+  // con un pequeño debounce para no recalcular en cada tecla.
+  function inicializarBuscadores() {
+    document.querySelectorAll('[data-buscador]').forEach((input) => {
+      if (input.dataset.inicializado) return;
+      input.dataset.inicializado = 'true';
+
+      let temporizador;
+
+      input.addEventListener('input', (evento) => {
+        const texto = evento.target.value;
+        clearTimeout(temporizador);
+        temporizador = setTimeout(() => {
+          window.dispatchEvent(new CustomEvent('buscar:input', { detail: { texto } }));
+        }, 150);
+      });
+
+      input.addEventListener('keydown', (evento) => {
+        if (evento.key !== 'Enter') return;
+        const texto = evento.target.value.trim();
+        const enPaginaProductos = window.location.pathname === '/productos';
+        if (!enPaginaProductos) {
+          window.location.href = `/productos?buscar=${encodeURIComponent(texto)}`;
+        }
+      });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', inicializarBuscadores);
+  inicializarBuscadores();
+  // Astro navega entre páginas recargando el documento por defecto
+  // (no usamos View Transitions acá), así que este listener alcanza.
+</script>

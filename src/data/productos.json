@@ -1,20 +1,39 @@
 [
-    {
-          "id": 1,
-        "nombre": "Oreo",
-        "precio": 1200,
-        "imagen":"public/Productos/produ.png"
-    },
-    {
-        "id": 2,
-        "nombre": "Oreo",
-        "precio": 1200,
-        "imagen":"public/Productos/produ.png"
-    },
-    {
-        "id": 2,
-        "nombre": "Oreo",
-        "precio": 1200,
-        "imagen":"public/Productos/produ.png"
-    }
+  { "id": 1, "nombre": "Alfajor Jorgito Triple", "categoria": "chocolates", "precio": 1200, "stock": 40, "descripcion": "Alfajor triple bañado en chocolate", "imagen": "/productos/chocolates.svg", "destacado": true, "nuevo": false },
+  { "id": 2, "nombre": "Chocolate Águila 150g", "categoria": "chocolates", "precio": 2600, "stock": 25, "descripcion": "Tableta de chocolate con leche", "imagen": "/productos/chocolates.svg", "destacado": true, "nuevo": false },
+  { "id": 3, "nombre": "Bon o Bon x1", "categoria": "chocolates", "precio": 500, "stock": 100, "descripcion": "Bombón relleno de maní", "imagen": "/productos/chocolates.svg", "destacado": false, "nuevo": false },
+  { "id": 4, "nombre": "Rhodesia x1", "categoria": "chocolates", "precio": 550, "stock": 80, "descripcion": "Chocolate crocante con maní", "imagen": "/productos/chocolates.svg", "destacado": false, "nuevo": true },
+
+  { "id": 5, "nombre": "Coca Cola 2.25L", "categoria": "bebidas", "precio": 3200, "stock": 30, "descripcion": "Gaseosa cola línea familiar", "imagen": "/productos/bebidas.svg", "destacado": true, "nuevo": false },
+  { "id": 6, "nombre": "Sprite 1.5L", "categoria": "bebidas", "precio": 2400, "stock": 35, "descripcion": "Gaseosa lima limón", "imagen": "/productos/bebidas.svg", "destacado": false, "nuevo": false },
+  { "id": 7, "nombre": "Agua Mineral Villavicencio 1.5L", "categoria": "bebidas", "precio": 1300, "stock": 60, "descripcion": "Agua mineral sin gas", "imagen": "/productos/bebidas.svg", "destacado": false, "nuevo": false },
+  { "id": 8, "nombre": "Cerveza Quilmes 1L", "categoria": "bebidas", "precio": 2100, "stock": 45, "descripcion": "Cerveza rubia retornable", "imagen": "/productos/bebidas.svg", "destacado": true, "nuevo": false },
+  { "id": 9, "nombre": "Gatorade 500ml", "categoria": "bebidas", "precio": 1800, "stock": 20, "descripcion": "Bebida isotónica sabor naranja", "imagen": "/productos/bebidas.svg", "destacado": false, "nuevo": true },
+
+  { "id": 10, "nombre": "Jugo Cepita Naranja 200ml", "categoria": "jugos", "precio": 900, "stock": 50, "descripcion": "Jugo exprimido de naranja", "imagen": "/productos/jugos.svg", "destacado": false, "nuevo": false },
+  { "id": 11, "nombre": "Jugo en Polvo Ades Multifruta", "categoria": "jugos", "precio": 700, "stock": 40, "descripcion": "Sobre para preparar 2 litros", "imagen": "/productos/jugos.svg", "destacado": false, "nuevo": false },
+  { "id": 12, "nombre": "Jugo Baggio Pomelo 1L", "categoria": "jugos", "precio": 1600, "stock": 28, "descripcion": "Jugo listo para tomar", "imagen": "/productos/jugos.svg", "destacado": false, "nuevo": true },
+
+  { "id": 13, "nombre": "Oreo Original 118g", "categoria": "galletitas", "precio": 1500, "stock": 55, "descripcion": "Galletitas de chocolate rellenas", "imagen": "/productos/galletitas.svg", "destacado": true, "nuevo": false },
+  { "id": 14, "nombre": "Pepitos Chocolate", "categoria": "galletitas", "precio": 1400, "stock": 45, "descripcion": "Galletitas con chips de chocolate", "imagen": "/productos/galletitas.svg", "destacado": false, "nuevo": false },
+  { "id": 15, "nombre": "Criollitas x400g", "categoria": "galletitas", "precio": 1700, "stock": 38, "descripcion": "Galletitas criollas clásicas", "imagen": "/productos/galletitas.svg", "destacado": false, "nuevo": false },
+  { "id": 16, "nombre": "Sonrisas Rellenas", "categoria": "galletitas", "precio": 1100, "stock": 42, "descripcion": "Galletitas rellenas de dulce de leche", "imagen": "/productos/galletitas.svg", "destacado": false, "nuevo": true },
+
+  { "id": 17, "nombre": "Papas Lays Clásicas 100g", "categoria": "snacks", "precio": 2200, "stock": 33, "descripcion": "Papas fritas saladas", "imagen": "/productos/snacks.svg", "destacado": true, "nuevo": false },
+  { "id": 18, "nombre": "Doritos Queso 100g", "categoria": "snacks", "precio": 2300, "stock": 30, "descripcion": "Nachos sabor queso", "imagen": "/productos/snacks.svg", "destacado": false, "nuevo": false },
+  { "id": 19, "nombre": "Palitos Salados Saladix", "categoria": "snacks", "precio": 900, "stock": 60, "descripcion": "Palitos salados clásicos", "imagen": "/productos/snacks.svg", "destacado": false, "nuevo": false },
+
+  { "id": 20, "nombre": "Chupetín Pico Dulce", "categoria": "golosinas", "precio": 250, "stock": 120, "descripcion": "Chupetín ácido sabor frutilla", "imagen": "/productos/golosinas.svg", "destacado": false, "nuevo": false },
+  { "id": 21, "nombre": "Caramelos Media Hora x1", "categoria": "golosinas", "precio": 150, "stock": 200, "descripcion": "Caramelo masticable de menta", "imagen": "/productos/golosinas.svg", "destacado": false, "nuevo": false },
+  { "id": 22, "nombre": "Ambrosoli Surtidos x1", "categoria": "golosinas", "precio": 180, "stock": 150, "descripcion": "Caramelos frutales surtidos", "imagen": "/productos/golosinas.svg", "destacado": true, "nuevo": false },
+  { "id": 23, "nombre": "Chicles Beldent Menta", "categoria": "golosinas", "precio": 800, "stock": 70, "descripcion": "Pack de chicles sabor menta", "imagen": "/productos/golosinas.svg", "destacado": false, "nuevo": true },
+
+  { "id": 24, "nombre": "Cuaderno Rivadavia Tapa Dura", "categoria": "libreria", "precio": 3500, "stock": 25, "descripcion": "Cuaderno rayado 50 hojas", "imagen": "/productos/libreria.svg", "destacado": false, "nuevo": false },
+  { "id": 25, "nombre": "Lapicera Bic Cristal Azul", "categoria": "libreria", "precio": 400, "stock": 90, "descripcion": "Lapicera de tinta azul", "imagen": "/productos/libreria.svg", "destacado": false, "nuevo": false },
+  { "id": 26, "nombre": "Cartuchera Escolar", "categoria": "libreria", "precio": 4200, "stock": 15, "descripcion": "Cartuchera con útiles básicos", "imagen": "/productos/libreria.svg", "destacado": false, "nuevo": true },
+  { "id": 27, "nombre": "Repuesto Universitario x50", "categoria": "libreria", "precio": 2100, "stock": 35, "descripcion": "Hojas rayadas para carpeta", "imagen": "/productos/libreria.svg", "destacado": false, "nuevo": false },
+
+  { "id": 28, "nombre": "Yerba Mate Playadito 1kg", "categoria": "varios", "precio": 4800, "stock": 22, "descripcion": "Yerba mate con palo", "imagen": "/productos/varios.svg", "destacado": true, "nuevo": false },
+  { "id": 29, "nombre": "Sal Fina Celusal 500g", "categoria": "varios", "precio": 700, "stock": 40, "descripcion": "Sal fina de mesa", "imagen": "/productos/varios.svg", "destacado": false, "nuevo": false },
+  { "id": 30, "nombre": "Fósforos Ranchera x10", "categoria": "varios", "precio": 600, "stock": 65, "descripcion": "Caja de fósforos de madera", "imagen": "/productos/varios.svg", "destacado": false, "nuevo": false }
 ]

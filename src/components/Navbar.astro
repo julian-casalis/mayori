@@ -1,11 +1,256 @@
-<nav class="navbar">
-  <h2>🛒 Mi Kiosco</h2>
+---
+/*
+  Navbar.astro
+  --------------------------------------------------
+  Barra de navegación superior, fija (sticky) en todas
+  las páginas. Contiene:
+  - Logo (link a home)
+  - Links de navegación (se ocultan en mobile detrás de un
+    menú hamburguesa)
+  - Buscador rápido (componente SearchBar)
+  - Botón de carrito con contador de unidades
 
-  <ul>
-    <li>Inicio</li>
+  El contador del carrito y la apertura del panel lateral
+  se manejan con el script al final del archivo, que usa
+  `window.Carrito` (definido en /public/scripts/cart.js).
+  --------------------------------------------------
+*/
+import SearchBar from './SearchBar.astro';
 
-    <li>Productos</li>
+const enlaces = [
+  { href: '/', texto: 'Inicio' },
+  { href: '/productos', texto: 'Productos' },
+  { href: '/#categorias', texto: 'Categorías' },
+  { href: '/nosotros', texto: 'Nosotros' },
+  { href: '/contacto', texto: 'Contacto' },
+];
+---
 
-    <li>Contacto</li>
-  </ul>
-</nav>
+<header class="navbar">
+  <div class="contenedor navbar__inner">
+    <a href="/" class="navbar__logo" aria-label="Ir al inicio">
+      <span class="navbar__logo-emoji">🛒</span>
+      <span class="navbar__logo-texto">La Distribuidora</span>
+    </a>
+
+    <nav class="navbar__links navbar__links--desktop" aria-label="Navegación principal">
+      {enlaces.map((enlace) => (
+        <a href={enlace.href}>{enlace.texto}</a>
+      ))}
+    </nav>
+
+    <div class="navbar__buscador-desktop">
+      <!-- Buscador visible solo en desktop/tablet dentro del navbar -->
+      <SearchBar variante="navbar" id="buscador-navbar-desktop" />
+    </div>
+
+    <div class="navbar__acciones">
+      <button
+        id="btn-carrito"
+        class="navbar__btn-carrito"
+        aria-label="Abrir carrito de compras"
+        aria-haspopup="dialog"
+      >
+        🛒
+        <span id="contador-carrito" class="navbar__badge" hidden>0</span>
+      </button>
+
+      <button
+        id="btn-menu-mobile"
+        class="navbar__btn-menu"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="menu-mobile"
+      >
+        ☰
+      </button>
+    </div>
+  </div>
+
+  <!-- Buscador en su propia fila para mobile -->
+  <div class="navbar__buscador-mobile contenedor">
+    <SearchBar variante="navbar" id="buscador-navbar-mobile" />
+  </div>
+
+  <!-- Menú desplegable mobile -->
+  <nav id="menu-mobile" class="navbar__menu-mobile" aria-label="Navegación mobile" hidden>
+    {enlaces.map((enlace) => (
+      <a href={enlace.href}>{enlace.texto}</a>
+    ))}
+  </nav>
+</header>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background-color: var(--color-tarjeta);
+    border-bottom: 1px solid var(--color-borde);
+  }
+
+  .navbar__inner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    height: var(--header-alto);
+  }
+
+  .navbar__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 800;
+    font-size: var(--fs-lg);
+    white-space: nowrap;
+  }
+
+  .navbar__logo-emoji {
+    font-size: 1.4rem;
+  }
+
+  .navbar__links {
+    display: flex;
+    gap: var(--space-lg);
+    font-weight: 500;
+    font-size: var(--fs-sm);
+  }
+
+  .navbar__links a {
+    color: var(--color-texto);
+    transition: color var(--transicion-rapida);
+    padding: 0.25rem 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .navbar__links a:hover {
+    color: var(--color-primario);
+    border-bottom-color: var(--color-primario);
+  }
+
+  .navbar__buscador-desktop {
+    flex: 1;
+    max-width: 340px;
+    margin-left: auto;
+  }
+
+  .navbar__acciones {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .navbar__btn-carrito {
+    position: relative;
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+    padding: 0.4rem;
+    border-radius: var(--radio-md);
+    transition: background-color var(--transicion-rapida), transform var(--transicion-rapida);
+  }
+
+  .navbar__btn-carrito:hover {
+    background-color: var(--color-fondo);
+    transform: scale(1.05);
+  }
+
+  .navbar__badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    background-color: var(--color-error);
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    border-radius: var(--radio-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+  }
+
+  .navbar__btn-menu {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.3rem 0.5rem;
+  }
+
+  .navbar__buscador-mobile {
+    display: none;
+    padding-bottom: var(--space-sm);
+  }
+
+  .navbar__menu-mobile {
+    display: none;
+    flex-direction: column;
+    padding: var(--space-sm) var(--space-md) var(--space-md);
+    border-top: 1px solid var(--color-borde);
+    gap: var(--space-sm);
+  }
+
+  .navbar__menu-mobile a {
+    padding: 0.5rem 0;
+    font-weight: 500;
+  }
+
+  .navbar__menu-mobile.abierto {
+    display: flex;
+  }
+
+  @media (max-width: 860px) {
+    .navbar__links--desktop,
+    .navbar__buscador-desktop {
+      display: none;
+    }
+
+    .navbar__btn-menu {
+      display: inline-block;
+    }
+
+    .navbar__buscador-mobile {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  // Este script corre en el cliente en TODAS las páginas (el Navbar
+  // está en el Layout). Se encarga de:
+  // 1) Abrir/cerrar el menú hamburguesa en mobile
+  // 2) Abrir el CartSidebar al hacer click en el ícono del carrito
+  // 3) Mantener actualizado el contador de unidades del carrito
+
+  const btnMenu = document.getElementById('btn-menu-mobile');
+  const menuMobile = document.getElementById('menu-mobile');
+
+  btnMenu?.addEventListener('click', () => {
+    const abierto = menuMobile?.classList.toggle('abierto');
+    btnMenu.setAttribute('aria-expanded', String(Boolean(abierto)));
+  });
+
+  const btnCarrito = document.getElementById('btn-carrito');
+  btnCarrito?.addEventListener('click', () => {
+    window.dispatchEvent(new CustomEvent('carrito:abrir'));
+  });
+
+  function actualizarContador() {
+    const contador = document.getElementById('contador-carrito');
+    if (!contador || !window.Carrito) return;
+    const cantidad = window.Carrito.obtenerCantidadTotal();
+    contador.textContent = String(cantidad);
+    contador.hidden = cantidad === 0;
+  }
+
+  window.addEventListener('carrito:actualizado', actualizarContador);
+  window.addEventListener('DOMContentLoaded', actualizarContador);
+  // Por si el script del navbar se ejecuta después de que cart.js
+  // ya cargó y el DOM ya estaba listo:
+  actualizarContador();
+</script>

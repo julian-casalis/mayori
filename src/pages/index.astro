@@ -1,20 +1,118 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/Navbar.astro";
-import ProductCard from "../components/ProductCard.astro";
-import Card from "../components/Card.astro";
+/*
+  index.astro (Home)
+  --------------------------------------------------
+  Página principal del sitio. Muestra:
+  1) Hero con la propuesta principal
+  2) Categorías destacadas
+  3) Productos más vendidos (destacado: true en productos.json)
+  4) Productos nuevos (nuevo: true en productos.json)
+  5) Sección de beneficios
 
-import productos from "../data/productos.json";
+  👉 Para agregar/quitar un producto de "Más vendidos" o
+     "Nuevos", editá los campos "destacado" / "nuevo" en
+     src/data/productos.json.
+--------------------------------------------------
+*/
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import CategoryCard from '../components/CategoryCard.astro';
+import ProductCard from '../components/ProductCard.astro';
+import categorias from '../data/categorias.json';
+import productos from '../data/productos.json';
+
+const productosDestacados = productos.filter((p) => p.destacado).slice(0, 8);
+const productosNuevos = productos.filter((p) => p.nuevo).slice(0, 8);
 ---
 
-<Layout title="Mi Kiosco">
-  <Navbar />
+<Layout>
+  <Hero />
 
-  <main>
-    <h1>Productos</h1>
+  <section id="categorias" class="seccion contenedor">
+    <h2 class="seccion-titulo">Categorías</h2>
+    <p class="seccion-subtitulo">Encontrá rápido lo que buscás</p>
+    <div class="grilla-categorias">
+      {categorias.map((cat) => <CategoryCard categoria={cat} />)}
+    </div>
+  </section>
 
-    <section class="productos">
-      {productos.map((producto) => <ProductCard producto={producto} />)}
-    </section>
-  </main>
+  <section id="destacados" class="seccion contenedor">
+    <h2 class="seccion-titulo">⭐ Más vendidos</h2>
+    <p class="seccion-subtitulo">Los productos favoritos de nuestros clientes</p>
+    <div class="grilla-productos">
+      {productosDestacados.map((producto) => <ProductCard producto={producto} />)}
+    </div>
+  </section>
+
+  <section class="seccion contenedor">
+    <h2 class="seccion-titulo">🆕 Novedades</h2>
+    <p class="seccion-subtitulo">Lo último que llegó a la distribuidora</p>
+    <div class="grilla-productos">
+      {productosNuevos.map((producto) => <ProductCard producto={producto} />)}
+    </div>
+  </section>
+
+  <section class="seccion contenedor">
+    <h2 class="seccion-titulo">¿Por qué comprar con nosotros?</h2>
+    <div class="beneficios">
+      <div class="beneficio">
+        <span class="beneficio__icono">🚚</span>
+        <h3>Entrega rápida</h3>
+        <p>Coordinamos la entrega o el retiro en el momento, por WhatsApp.</p>
+      </div>
+      <div class="beneficio">
+        <span class="beneficio__icono">🧾</span>
+        <h3>Pedido claro</h3>
+        <p>Armás tu pedido en el catálogo y te llega el detalle exacto por chat.</p>
+      </div>
+      <div class="beneficio">
+        <span class="beneficio__icono">💬</span>
+        <h3>Atención directa</h3>
+        <p>Hablás con una persona real para confirmar precios y stock.</p>
+      </div>
+      <div class="beneficio">
+        <span class="beneficio__icono">📦</span>
+        <h3>Gran variedad</h3>
+        <p>Golosinas, bebidas, librería y mucho más en un solo lugar.</p>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .beneficios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .beneficio {
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-lg);
+    padding: var(--space-lg);
+    text-align: center;
+    transition: transform var(--transicion-normal), box-shadow var(--transicion-normal);
+  }
+
+  .beneficio:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-md);
+  }
+
+  .beneficio__icono {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: var(--space-sm);
+  }
+
+  .beneficio h3 {
+    margin-bottom: 0.35rem;
+    font-size: var(--fs-base);
+  }
+
+  .beneficio p {
+    font-size: var(--fs-sm);
+    color: var(--color-texto-secundario);
+  }
+</style>

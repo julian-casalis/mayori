@@ -1,0 +1,112 @@
+---
+/*
+  Hero.astro
+  --------------------------------------------------
+  Sección principal (arriba de todo) del home. Presenta
+  la propuesta de la distribuidora con dos botones de
+  acción: ir al catálogo completo o ir a promociones.
+--------------------------------------------------
+*/
+---
+
+<section class="hero">
+  <div class="contenedor hero__inner">
+    <div class="hero__texto fade-in">
+      <span class="hero__eyebrow">📦 Catálogo online</span>
+      <h1 class="hero__titulo">Todo lo que necesitás, a un pedido de distancia</h1>
+      <p class="hero__subtitulo">
+        Golosinas, bebidas, galletitas, librería y mucho más. Elegí tus productos y coordinamos
+        la entrega por WhatsApp en minutos.
+      </p>
+      <div class="hero__acciones">
+        <a href="/productos" class="btn btn-primario">📦 Ver productos</a>
+        <a href="#destacados" class="btn btn-outline">⭐ Promociones</a>
+      </div>
+    </div>
+
+    <div class="hero__imagen fade-in" aria-hidden="true">
+      <div class="hero__imagen-emoji">🛍️</div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(34, 197, 94, 0.08));
+    padding: var(--space-2xl) 0;
+  }
+
+  .hero__inner {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: var(--space-xl);
+  }
+
+  .hero__eyebrow {
+    display: inline-block;
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radio-full);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    margin-bottom: var(--space-md);
+  }
+
+  .hero__titulo {
+    font-size: var(--fs-3xl);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: var(--space-md);
+  }
+
+  .hero__subtitulo {
+    color: var(--color-texto-secundario);
+    font-size: var(--fs-lg);
+    max-width: 520px;
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero__acciones {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .hero__imagen {
+    aspect-ratio: 1 / 1;
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--sombra-md);
+  }
+
+  .hero__imagen-emoji {
+    font-size: 7rem;
+  }
+
+  @media (max-width: 860px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .hero__subtitulo {
+      margin-inline: auto;
+    }
+
+    .hero__acciones {
+      justify-content: center;
+    }
+
+    .hero__imagen {
+      max-width: 280px;
+      margin: 0 auto;
+    }
+  }
+</style>

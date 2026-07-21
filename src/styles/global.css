@@ -1,0 +1,147 @@
+/*
+  global.css
+  --------------------------------------------------
+  Reset básico + estilos generales que aplican a
+  TODO el sitio (tipografía, scroll, layout base).
+  Los estilos específicos de botones y tarjetas están
+  separados en buttons.css y cards.css para mantener
+  el CSS organizado y fácil de mantener.
+  --------------------------------------------------
+*/
+
+@import './variables.css';
+@import './buttons.css';
+@import './cards.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--fuente-principal);
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+button, input, select {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Respeta la preferencia del usuario de reducir animaciones */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Layout compartido ---------- */
+.contenedor {
+  width: 100%;
+  max-width: var(--max-ancho);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.seccion {
+  padding: var(--space-2xl) 0;
+}
+
+.seccion-titulo {
+  font-size: var(--fs-2xl);
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.02em;
+}
+
+.seccion-subtitulo {
+  color: var(--color-texto-secundario);
+  margin-bottom: var(--space-xl);
+  font-size: var(--fs-base);
+}
+
+/* ---------- Accesibilidad: foco visible ---------- */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-primario);
+  outline-offset: 2px;
+  border-radius: var(--radio-sm);
+}
+
+/* ---------- Animación de entrada (fade) ---------- */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn var(--transicion-normal) ease both;
+}
+
+/* ---------- Grilla de productos reutilizable ---------- */
+.grilla-productos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-lg);
+}
+
+.grilla-categorias {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: var(--space-md);
+}
+
+/* ---------- Estado vacío ---------- */
+.estado-vacio {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-md);
+  color: var(--color-texto-secundario);
+}
+
+.estado-vacio .emoji-grande {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+}
+
+/* ---------- Utilidades ---------- */
+.text-center { text-align: center; }
+.solo-lectores {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .seccion-titulo { font-size: var(--fs-xl); }
+  .contenedor { padding: 0 var(--space-md); }
+}

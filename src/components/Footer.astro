@@ -1,0 +1,120 @@
+---
+/*
+  Footer.astro
+  --------------------------------------------------
+  Pie de página común a todo el sitio: datos de contacto,
+  horarios, links rápidos y redes.
+--------------------------------------------------
+*/
+import categorias from '../data/categorias.json';
+
+const anioActual = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="contenedor footer__grid">
+    <div class="footer__col">
+      <div class="footer__logo">🛒 La Distribuidora</div>
+      <p class="footer__descripcion">
+        Golosinas, bebidas, librería y mucho más. Armá tu pedido online y lo coordinamos por WhatsApp.
+      </p>
+    </div>
+
+    <div class="footer__col">
+      <h4>Categorías</h4>
+      <ul>
+        {categorias.slice(0, 5).map((cat) => (
+          <li><a href={`/categoria/${cat.id}`}>{cat.emoji} {cat.nombre}</a></li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4>Ayuda</h4>
+      <ul>
+        <li><a href="/nosotros">Nosotros</a></li>
+        <li><a href="/contacto">Contacto</a></li>
+        <li><a href="/carrito">Mi carrito</a></li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h4>Contacto</h4>
+      <ul>
+        <li>📍 Reconquista, Santa Fe</li>
+        <li>☎ +54 9 3400 000-000</li>
+        <li>🟢 Pedidos por WhatsApp</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__bottom contenedor">
+    <span>© {anioActual} La Distribuidora. Todos los derechos reservados.</span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: var(--color-tarjeta);
+    border-top: 1px solid var(--color-borde);
+    margin-top: var(--space-2xl);
+  }
+
+  .footer__grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: var(--space-xl);
+    padding: var(--space-2xl) 0 var(--space-lg);
+  }
+
+  .footer__logo {
+    font-weight: 800;
+    font-size: var(--fs-lg);
+    margin-bottom: var(--space-sm);
+  }
+
+  .footer__descripcion {
+    color: var(--color-texto-secundario);
+    font-size: var(--fs-sm);
+    max-width: 320px;
+  }
+
+  .footer__col h4 {
+    margin-bottom: var(--space-sm);
+    font-size: var(--fs-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-texto-secundario);
+  }
+
+  .footer__col ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: var(--fs-sm);
+  }
+
+  .footer__col a:hover {
+    color: var(--color-primario);
+  }
+
+  .footer__bottom {
+    border-top: 1px solid var(--color-borde);
+    padding: var(--space-md) 0;
+    font-size: var(--fs-xs);
+    color: var(--color-texto-secundario);
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .footer__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .footer__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,33 @@
+---
+/*
+  CategoryCard.astro
+  --------------------------------------------------
+  Tarjeta que representa una categoría (Golosinas, Bebidas, etc).
+  Al hacer click lleva a /categoria/[id], donde se listan solo
+  los productos de esa categoría.
+
+  👉 Para agregar una categoría nueva, sumá un objeto en
+     src/data/categorias.json con: id, nombre, emoji, descripcion.
+     El "id" debe ser el mismo string que usás en el campo
+     "categoria" de cada producto en productos.json.
+--------------------------------------------------
+*/
+interface Props {
+  categoria: {
+    id: string;
+    nombre: string;
+    emoji: string;
+    descripcion?: string;
+  };
+}
+
+const { categoria } = Astro.props;
+---
+
+<a href={`/categoria/${categoria.id}`} class="tarjeta-categoria fade-in">
+  <span class="tarjeta-categoria__emoji" aria-hidden="true">{categoria.emoji}</span>
+  <span class="tarjeta-categoria__nombre">{categoria.nombre}</span>
+  {categoria.descripcion && (
+    <span class="tarjeta-categoria__descripcion">{categoria.descripcion}</span>
+  )}
+</a>

@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Nosotros — La Distribuidora">
+  <section class="seccion contenedor nosotros">
+    <h1 class="seccion-titulo">Sobre nosotros</h1>
+    <p class="seccion-subtitulo">Una distribuidora de barrio, ahora también online</p>
+
+    <div class="nosotros__contenido">
+      <p>
+        Somos una distribuidora y kiosco con años de trayectoria, ofreciendo golosinas,
+        bebidas, galletitas, jugos, librería, chocolates y snacks a precios de mayorista.
+      </p>
+      <p>
+        Creamos este catálogo online para que puedas ver todo lo que tenemos disponible,
+        armar tu pedido con tranquilidad y coordinarlo directamente con nosotros por
+        WhatsApp, sin vueltas.
+      </p>
+      <p>
+        Seguimos creciendo día a día para ofrecerte más variedad y mejor atención.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .nosotros {
+    max-width: 760px;
+  }
+
+  .nosotros__contenido {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    color: var(--color-texto-secundario);
+    font-size: var(--fs-lg);
+    line-height: 1.7;
+  }
+</style>

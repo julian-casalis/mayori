@@ -1,0 +1,194 @@
+---
+/*
+  productos.astro
+  --------------------------------------------------
+  Catálogo completo. Se renderiza en el servidor con
+  TODOS los productos (bueno para SEO y para cuando el
+  usuario tiene JavaScript deshabilitado), y luego en el
+  cliente se vuelve a pintar la grilla cada vez que cambian
+  los filtros o la búsqueda (eventos "filtros:cambio" y
+  "buscar:input", ver Filters.astro y SearchBar.astro).
+
+  El array completo de productos se inyecta en un <script>
+  con define:vars para que el JS del cliente pueda filtrarlo
+  sin tener que volver a pedirlo por fetch.
+--------------------------------------------------
+*/
+import Layout from '../layouts/Layout.astro';
+import SearchBar from '../components/SearchBar.astro';
+import Filters from '../components/Filters.astro';
+import ProductCard from '../components/ProductCard.astro';
+import productos from '../data/productos.json';
+
+const busquedaInicial = Astro.url.searchParams.get('buscar') ?? '';
+---
+
+<Layout title="Productos — La Distribuidora">
+  <section class="seccion contenedor">
+    <h1 class="seccion-titulo">📦 Catálogo completo</h1>
+    <p class="seccion-subtitulo">Buscá, filtrá y armá tu pedido</p>
+
+    <div class="productos__buscador">
+      <SearchBar variante="pagina" id="buscador-pagina" valorInicial={busquedaInicial} />
+    </div>
+
+    <Filters />
+
+    <p id="productos__contador" class="productos__contador"></p>
+
+    <div id="grilla-productos" class="grilla-productos">
+      {productos.map((producto) => <ProductCard producto={producto} />)}
+    </div>
+
+    <div id="productos__vacio" class="estado-vacio" hidden>
+      <div class="emoji-grande">🔍</div>
+      <p>No encontramos productos con esos filtros.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .productos__buscador {
+    max-width: 480px;
+    margin-bottom: var(--space-md);
+  }
+
+  .productos__contador {
+    color: var(--color-texto-secundario);
+    font-size: var(--fs-sm);
+    margin-bottom: var(--space-md);
+  }
+</style>
+
+<script define:vars={{ todosLosProductos: productos, busquedaInicial }}>
+  // -------------------------------------------------------
+  // Filtrado y ordenamiento 100% en el cliente.
+  // `todosLosProductos` viene inyectado desde el frontmatter
+  // de Astro (build time) gracias a define:vars.
+  // -------------------------------------------------------
+  const grilla = document.getElementById('grilla-productos');
+  const vacio = document.getElementById('productos__vacio');
+  const contador = document.getElementById('productos__contador');
+
+  let estado = {
+    texto: busquedaInicial || '',
+    categoria: '',
+    precioMin: '',
+    precioMax: '',
+    orden: 'relevancia',
+  };
+
+  function formatearPrecio(numero) {
+    return new Intl.NumberFormat('es-AR', {
+      style: 'currency',
+      currency: 'ARS',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(numero);
+  }
+
+  // Genera el MISMO markup que ProductCard.astro, para que el
+  // botón "Agregar al carrito" (delegado globalmente) funcione igual.
+  function tarjetaHTML(producto) {
+    const badge = producto.nuevo
+      ? `<span class="badge badge-nuevo">Nuevo</span>`
+      : producto.destacado
+        ? `<span class="badge badge-destacado">⭐ Top</span>`
+        : '';
+
+    const stockTexto =
+      producto.stock !== undefined
+        ? `<span class="tarjeta-producto__stock">${producto.stock > 0 ? '📦 Stock disponible' : '⚠️ Sin stock'}</span>`
+        : '';
+
+    return `
+      <article class="tarjeta-producto fade-in" data-tarjeta-producto="${producto.id}">
+        ${badge}
+        <div class="tarjeta-producto__imagen-wrap">
+          <img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy" width="400" height="400" />
+        </div>
+        <div class="tarjeta-producto__cuerpo">
+          <span class="tarjeta-producto__categoria">${producto.categoria}</span>
+          <h3 class="tarjeta-producto__nombre">${producto.nombre}</h3>
+          ${stockTexto}
+          <span class="tarjeta-producto__precio">${formatearPrecio(producto.precio)}</span>
+        </div>
+        <div class="tarjeta-producto__pie">
+          <button class="btn btn-primario btn-bloque btn-agregar" data-agregar-carrito="${producto.id}" aria-label="Agregar ${producto.nombre} al carrito">
+            ➕ Agregar
+          </button>
+        </div>
+      </article>
+    `;
+  }
+
+  function aplicarFiltros() {
+    let resultado = [...todosLosProductos];
+
+    if (estado.texto.trim()) {
+      const q = estado.texto.trim().toLowerCase();
+      resultado = resultado.filter(
+        (p) =>
+          p.nombre.toLowerCase().includes(q) ||
+          p.categoria.toLowerCase().includes(q) ||
+          (p.descripcion && p.descripcion.toLowerCase().includes(q))
+      );
+    }
+
+    if (estado.categoria) {
+      resultado = resultado.filter((p) => p.categoria === estado.categoria);
+    }
+
+    if (estado.precioMin !== '') {
+      resultado = resultado.filter((p) => p.precio >= Number(estado.precioMin));
+    }
+
+    if (estado.precioMax !== '') {
+      resultado = resultado.filter((p) => p.precio <= Number(estado.precioMax));
+    }
+
+    switch (estado.orden) {
+      case 'mas-barato':
+        resultado.sort((a, b) => a.precio - b.precio);
+        break;
+      case 'mas-caro':
+        resultado.sort((a, b) => b.precio - a.precio);
+        break;
+      case 'nombre-az':
+        resultado.sort((a, b) => a.nombre.localeCompare(b.nombre));
+        break;
+      case 'nombre-za':
+        resultado.sort((a, b) => b.nombre.localeCompare(a.nombre));
+        break;
+    }
+
+    renderizar(resultado);
+  }
+
+  function renderizar(lista) {
+    contador.textContent = `${lista.length} producto${lista.length === 1 ? '' : 's'} encontrado${lista.length === 1 ? '' : 's'}`;
+
+    if (lista.length === 0) {
+      grilla.hidden = true;
+      vacio.hidden = false;
+      return;
+    }
+
+    grilla.hidden = false;
+    vacio.hidden = true;
+    grilla.innerHTML = lista.map(tarjetaHTML).join('');
+  }
+
+  window.addEventListener('buscar:input', (e) => {
+    estado.texto = e.detail.texto;
+    aplicarFiltros();
+  });
+
+  window.addEventListener('filtros:cambio', (e) => {
+    estado = { ...estado, ...e.detail };
+    aplicarFiltros();
+  });
+
+  // Si llegó con ?buscar=... desde el navbar, aplicamos ese filtro inicial.
+  aplicarFiltros();
+</script>

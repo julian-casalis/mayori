@@ -1,0 +1,110 @@
+/*
+  buttons.css
+  --------------------------------------------------
+  Todos los estilos de botones del sitio.
+  Usar las clases .btn junto a un modificador:
+  .btn-primario / .btn-secundario / .btn-outline / .btn-icono
+  --------------------------------------------------
+*/
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.4rem;
+  border: none;
+  border-radius: var(--radio-md);
+  font-weight: 600;
+  font-size: var(--fs-sm);
+  cursor: pointer;
+  transition: transform var(--transicion-rapida), box-shadow var(--transicion-rapida), background-color var(--transicion-rapida);
+  white-space: nowrap;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primario {
+  background-color: var(--color-primario);
+  color: var(--color-texto-invertido);
+  box-shadow: var(--sombra-sm);
+}
+
+.btn-primario:hover {
+  background-color: var(--color-primario-oscuro);
+  box-shadow: var(--sombra-md);
+  transform: translateY(-2px);
+}
+
+.btn-secundario {
+  background-color: var(--color-secundario);
+  color: var(--color-texto-invertido);
+  box-shadow: var(--sombra-sm);
+}
+
+.btn-secundario:hover {
+  filter: brightness(0.94);
+  box-shadow: var(--sombra-md);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-primario);
+  border: 1.5px solid var(--color-primario);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primario);
+  color: var(--color-texto-invertido);
+}
+
+.btn-whatsapp {
+  background-color: #25D366;
+  color: #FFFFFF;
+  box-shadow: var(--sombra-sm);
+}
+
+.btn-whatsapp:hover {
+  background-color: #1EBE5A;
+  box-shadow: var(--sombra-md);
+  transform: translateY(-2px);
+}
+
+.btn-bloque {
+  width: 100%;
+}
+
+.btn-sm {
+  padding: 0.45rem 0.9rem;
+  font-size: var(--fs-xs);
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* Botón circular de ícono (ej: +/- cantidad, cerrar carrito) */
+.btn-icono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radio-full);
+  border: 1px solid var(--color-borde);
+  background-color: var(--color-tarjeta);
+  color: var(--color-texto);
+  cursor: pointer;
+  font-size: var(--fs-lg);
+  transition: background-color var(--transicion-rapida), transform var(--transicion-rapida);
+}
+
+.btn-icono:hover {
+  background-color: var(--color-fondo);
+  transform: scale(1.05);
+}

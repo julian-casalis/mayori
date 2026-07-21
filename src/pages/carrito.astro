@@ -1,0 +1,248 @@
+---
+/*
+  carrito.astro
+  --------------------------------------------------
+  Vista completa del carrito (a diferencia del CartSidebar,
+  que es un panel rápido). Acá el usuario puede revisar todo
+  su pedido con más detalle antes de enviarlo por WhatsApp.
+
+  Todo el contenido se pinta con JavaScript en el cliente
+  porque el carrito vive en localStorage.
+--------------------------------------------------
+*/
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Mi carrito — La Distribuidora">
+  <section class="seccion contenedor carrito-pagina">
+    <h1 class="seccion-titulo">🧾 Mi carrito</h1>
+
+    <div id="carrito-pagina__contenido">
+      <!-- Se llena dinámicamente con JS -->
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .carrito-pagina {
+    max-width: 820px;
+  }
+
+  :global(.tabla-carrito) {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-lg);
+    overflow: hidden;
+  }
+
+  :global(.tabla-carrito th) {
+    text-align: left;
+    font-size: var(--fs-xs);
+    text-transform: uppercase;
+    color: var(--color-texto-secundario);
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--color-fondo);
+  }
+
+  :global(.tabla-carrito td) {
+    padding: var(--space-sm) var(--space-md);
+    border-top: 1px solid var(--color-borde);
+    vertical-align: middle;
+  }
+
+  :global(.tabla-carrito__producto) {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  :global(.tabla-carrito__producto img) {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radio-sm);
+    object-fit: cover;
+    background-color: var(--color-fondo);
+  }
+
+  :global(.tabla-carrito__eliminar) {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--color-texto-secundario);
+  }
+
+  :global(.tabla-carrito__eliminar:hover) {
+    color: var(--color-error);
+  }
+
+  :global(.carrito-resumen) {
+    margin-top: var(--space-lg);
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-lg);
+    padding: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    max-width: 360px;
+    margin-left: auto;
+  }
+
+  :global(.carrito-resumen__linea) {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--fs-sm);
+    color: var(--color-texto-secundario);
+  }
+
+  :global(.carrito-resumen__total) {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--fs-xl);
+    font-weight: 700;
+    padding-top: var(--space-sm);
+    border-top: 1px solid var(--color-borde);
+  }
+
+  :global(.carrito-acciones) {
+    margin-top: var(--space-lg);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 640px) {
+    :global(.tabla-carrito thead) {
+      display: none;
+    }
+    :global(.tabla-carrito tr) {
+      display: block;
+      border-top: 1px solid var(--color-borde);
+      padding: var(--space-sm) 0;
+    }
+    :global(.tabla-carrito td) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: none;
+      padding: 0.35rem var(--space-md);
+    }
+    :global(.carrito-resumen) {
+      max-width: none;
+    }
+  }
+</style>
+
+<script>
+  const contenedor = document.getElementById('carrito-pagina__contenido');
+
+  async function render() {
+    if (!window.Carrito || !contenedor) return;
+    const items = await window.Carrito.obtenerItemsDetallados();
+
+    if (items.length === 0) {
+      contenedor.innerHTML = `
+        <div class="estado-vacio">
+          <div class="emoji-grande">🛒</div>
+          <p>Todavía no agregaste productos.</p>
+          <a href="/productos" class="btn btn-primario" style="margin-top:1rem;">Ir al catálogo</a>
+        </div>
+      `;
+      return;
+    }
+
+    const total = items.reduce((acc, i) => acc + i.precio * i.cantidad, 0);
+    const unidades = items.reduce((acc, i) => acc + i.cantidad, 0);
+
+    const filas = items
+      .map(
+        (item) => `
+      <tr data-fila-item="${item.id}">
+        <td>
+          <div class="tabla-carrito__producto">
+            <img src="${item.imagen}" alt="${item.nombre}" loading="lazy" />
+            <span>${item.nombre}</span>
+          </div>
+        </td>
+        <td>${window.Carrito.formatearPrecio(item.precio)}</td>
+        <td>
+          <div class="selector-cantidad" data-selector-cantidad="${item.id}">
+            <button class="btn-icono" data-restar="${item.id}" aria-label="Restar una unidad">➖</button>
+            <span class="selector-cantidad__valor">${item.cantidad}</span>
+            <button class="btn-icono" data-sumar="${item.id}" aria-label="Sumar una unidad">➕</button>
+          </div>
+        </td>
+        <td>${window.Carrito.formatearPrecio(item.precio * item.cantidad)}</td>
+        <td>
+          <button class="tabla-carrito__eliminar" data-eliminar-item="${item.id}" aria-label="Eliminar producto">🗑️</button>
+        </td>
+      </tr>
+    `
+      )
+      .join('');
+
+    contenedor.innerHTML = `
+      <table class="tabla-carrito">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Subtotal</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>${filas}</tbody>
+      </table>
+
+      <div class="carrito-resumen">
+        <div class="carrito-resumen__linea">
+          <span>Unidades</span>
+          <span>${unidades}</span>
+        </div>
+        <div class="carrito-resumen__total">
+          <span>Total</span>
+          <span>${window.Carrito.formatearPrecio(total)}</span>
+        </div>
+      </div>
+
+      <div class="carrito-acciones">
+        <button id="btn-vaciar-pagina" class="btn btn-outline">Vaciar carrito</button>
+        <button id="btn-enviar-pagina" class="btn btn-whatsapp">🟢 Enviar pedido por WhatsApp</button>
+      </div>
+    `;
+
+    document.getElementById('btn-vaciar-pagina')?.addEventListener('click', () => {
+      if (confirm('¿Vaciar todo el carrito?')) window.Carrito.vaciar();
+    });
+
+    document.getElementById('btn-enviar-pagina')?.addEventListener('click', async () => {
+      await window.Carrito.enviarPedidoPorWhatsapp();
+    });
+  }
+
+  contenedor?.addEventListener('click', (evento) => {
+    const target = evento.target;
+    const idSumar = target.closest('[data-sumar]')?.dataset.sumar;
+    const idRestar = target.closest('[data-restar]')?.dataset.restar;
+    const idEliminar = target.closest('[data-eliminar-item]')?.dataset.eliminarItem;
+
+    if (idSumar) {
+      window.Carrito.agregar(Number(idSumar), 1);
+    } else if (idRestar) {
+      const items = window.Carrito.obtener();
+      const item = items.find((i) => i.id === Number(idRestar));
+      if (item) window.Carrito.actualizarCantidad(Number(idRestar), item.cantidad - 1);
+    } else if (idEliminar) {
+      window.Carrito.eliminar(Number(idEliminar));
+    }
+  });
+
+  window.addEventListener('carrito:actualizado', render);
+  window.addEventListener('DOMContentLoaded', render);
+  render();
+</script>
