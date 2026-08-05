@@ -155,7 +155,6 @@ import Layout from '../layouts/Layout.astro';
       return;
     }
 
-    const total = items.reduce((acc, i) => acc + i.precio * i.cantidad, 0);
     const unidades = items.reduce((acc, i) => acc + i.cantidad, 0);
 
     const filas = items
@@ -168,7 +167,6 @@ import Layout from '../layouts/Layout.astro';
             <span>${item.nombre}</span>
           </div>
         </td>
-        <td>${window.Carrito.formatearPrecio(item.precio)}</td>
         <td>
           <div class="selector-cantidad" data-selector-cantidad="${item.id}">
             <button class="btn-icono" data-restar="${item.id}" aria-label="Restar una unidad">➖</button>
@@ -176,7 +174,6 @@ import Layout from '../layouts/Layout.astro';
             <button class="btn-icono" data-sumar="${item.id}" aria-label="Sumar una unidad">➕</button>
           </div>
         </td>
-        <td>${window.Carrito.formatearPrecio(item.precio * item.cantidad)}</td>
         <td>
           <button class="tabla-carrito__eliminar" data-eliminar-item="${item.id}" aria-label="Eliminar producto">🗑️</button>
         </td>
@@ -190,9 +187,7 @@ import Layout from '../layouts/Layout.astro';
         <thead>
           <tr>
             <th>Producto</th>
-            <th>Precio</th>
             <th>Cantidad</th>
-            <th>Subtotal</th>
             <th></th>
           </tr>
         </thead>
@@ -200,13 +195,9 @@ import Layout from '../layouts/Layout.astro';
       </table>
 
       <div class="carrito-resumen">
-        <div class="carrito-resumen__linea">
+        <div class="carrito-resumen__total">
           <span>Unidades</span>
           <span>${unidades}</span>
-        </div>
-        <div class="carrito-resumen__total">
-          <span>Total</span>
-          <span>${window.Carrito.formatearPrecio(total)}</span>
         </div>
       </div>
 

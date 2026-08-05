@@ -1,0 +1,254 @@
+---
+/*
+  producto/[id].astro
+  --------------------------------------------------
+  Vista detallada de UN producto. Astro genera una página
+  estática por cada producto (getStaticPaths), igual que
+  hace con las categorías en categoria/[slug].astro.
+
+  Se llega acá haciendo click en la imagen o el nombre de
+  cualquier ProductCard. Muestra:
+  - Imagen grande
+  - Nombre
+  - Categoría
+  - Descripción completa
+  - Selector de cantidad (➖ / ➕)
+  - Botón "Agregar al carrito" (usa la cantidad elegida)
+  - Botón "Volver"
+
+  No se muestra el precio en ningún lugar de esta página.
+--------------------------------------------------
+*/
+import Layout from '../../layouts/Layout.astro';
+import productosData from '../../data/productos.json';
+import categoriasData from '../../data/categorias.json';
+
+export function getStaticPaths() {
+  return productosData.map((producto) => ({
+    params: { id: String(producto.id) },
+    props: { producto },
+  }));
+}
+
+const { producto } = Astro.props;
+const categoriaInfo = categoriasData.find((c) => c.id === producto.categoria);
+---
+
+<Layout title={`${producto.nombre} — La Distribuidora`}>
+  <section class="seccion contenedor detalle-producto fade-in">
+    <a href="/productos" id="btn-volver" class="detalle-producto__volver">← Volver</a>
+
+    <div class="detalle-producto__grid">
+      <div class="detalle-producto__imagen-wrap">
+        {producto.nuevo && <span class="badge badge-nuevo">Nuevo</span>}
+        {!producto.nuevo && producto.destacado && <span class="badge badge-destacado">⭐ Top</span>}
+        <img src={producto.imagen} alt={producto.nombre} width="600" height="600" />
+      </div>
+
+      <div class="detalle-producto__info">
+        {categoriaInfo && (
+          <a href={`/categoria/${categoriaInfo.id}`} class="detalle-producto__categoria">
+            {categoriaInfo.emoji} {categoriaInfo.nombre}
+          </a>
+        )}
+
+        <h1 class="detalle-producto__nombre">{producto.nombre}</h1>
+
+        {producto.stock !== undefined && (
+          <span class="tarjeta-producto__stock">
+            {producto.stock > 0 ? '📦 Stock disponible' : '⚠️ Sin stock'}
+          </span>
+        )}
+
+        <p class="detalle-producto__descripcion">
+          {producto.descripcion || 'Sin descripción disponible.'}
+        </p>
+
+        <div class="detalle-producto__acciones">
+          <div class="tarjeta-producto__cantidad detalle-producto__cantidad" data-selector-tarjeta={producto.id}>
+            <button type="button" class="btn-icono" data-cantidad-menos={producto.id} aria-label="Restar cantidad">➖</button>
+            <span class="tarjeta-producto__cantidad-valor" data-cantidad-tarjeta={producto.id}>1</span>
+            <button type="button" class="btn-icono" data-cantidad-mas={producto.id} aria-label="Sumar cantidad">➕</button>
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-primario btn-bloque"
+            data-agregar-carrito={producto.id}
+            aria-label={`Agregar ${producto.nombre} al carrito`}
+          >
+            ➕ Agregar al carrito
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .detalle-producto {
+    max-width: 960px;
+  }
+
+  .detalle-producto__volver {
+    display: inline-block;
+    color: var(--color-primario);
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    margin-bottom: var(--space-lg);
+  }
+
+  .detalle-producto__volver:hover {
+    text-decoration: underline;
+  }
+
+  .detalle-producto__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+    align-items: start;
+  }
+
+  .detalle-producto__imagen-wrap {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    background-color: var(--color-tarjeta);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-lg);
+    overflow: hidden;
+    box-shadow: var(--sombra-md);
+  }
+
+  .detalle-producto__imagen-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .detalle-producto__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .detalle-producto__categoria {
+    align-self: flex-start;
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-primario);
+    background-color: var(--color-fondo);
+    border: 1px solid var(--color-borde);
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radio-full);
+  }
+
+  .detalle-producto__categoria:hover {
+    border-color: var(--color-primario);
+  }
+
+  .detalle-producto__nombre {
+    font-size: var(--fs-2xl);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin-top: 0.25rem;
+  }
+
+  .detalle-producto__descripcion {
+    color: var(--color-texto-secundario);
+    font-size: var(--fs-lg);
+    line-height: 1.7;
+    margin-top: var(--space-sm);
+  }
+
+  .detalle-producto__acciones {
+    margin-top: var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    max-width: 320px;
+  }
+
+  .detalle-producto__cantidad {
+    justify-content: flex-start;
+    padding: 0.5rem var(--space-md);
+    gap: var(--space-lg);
+  }
+
+  .detalle-producto__cantidad .tarjeta-producto__cantidad-valor {
+    font-size: var(--fs-lg);
+    min-width: 2rem;
+  }
+
+  @media (max-width: 720px) {
+    .detalle-producto__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .detalle-producto__acciones {
+      max-width: none;
+    }
+  }
+</style>
+
+<script>
+  // Misma lógica de selector de cantidad que en ProductCard, pero acá
+  // solo hay UN producto en la página, así que no hace falta delegación
+  // global ni el guard de "ya inicializado".
+  const CANTIDAD_MAXIMA = 99;
+
+  function leerCantidad(id) {
+    const span = document.querySelector(`[data-cantidad-tarjeta="${id}"]`);
+    return span ? Number(span.textContent) : 1;
+  }
+
+  function escribirCantidad(id, valor) {
+    const span = document.querySelector(`[data-cantidad-tarjeta="${id}"]`);
+    if (span) span.textContent = String(valor);
+  }
+
+  document.querySelectorAll('[data-cantidad-mas]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.cantidadMas;
+      escribirCantidad(id, Math.min(leerCantidad(id) + 1, CANTIDAD_MAXIMA));
+    });
+  });
+
+  document.querySelectorAll('[data-cantidad-menos]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.cantidadMenos;
+      escribirCantidad(id, Math.max(leerCantidad(id) - 1, 1));
+    });
+  });
+
+  document.querySelectorAll('[data-agregar-carrito]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (!window.Carrito) return;
+      const id = Number(btn.dataset.agregarCarrito);
+      const cantidad = leerCantidad(id);
+      window.Carrito.agregar(id, cantidad);
+
+      const textoOriginal = btn.textContent;
+      btn.textContent = cantidad > 1 ? `✅ Agregado x${cantidad}` : '✅ Agregado';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = textoOriginal;
+        btn.disabled = false;
+      }, 900);
+
+      escribirCantidad(id, 1);
+    });
+  });
+
+  // Botón "Volver": si hay historial previo en el sitio, volvemos con
+  // history.back() (así se respeta el scroll/filtros de donde venía);
+  // si no, el link ya tiene href="/productos" como respaldo.
+  const btnVolver = document.getElementById('btn-volver');
+  btnVolver?.addEventListener('click', (evento) => {
+    if (window.history.length > 1 && document.referrer.includes(window.location.origin)) {
+      evento.preventDefault();
+      window.history.back();
+    }
+  });
+</script>

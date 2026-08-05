@@ -3,14 +3,17 @@
   Filters.astro
   --------------------------------------------------
   Barra de filtros para /productos y /categoria/[slug].
-  Permite filtrar por categoría, rango de precio y ordenar
-  el listado.
+  Permite filtrar por categoría y ordenar el listado por nombre.
+
+  (No incluye filtro ni orden por precio: el sitio no muestra
+  precios en ningún lugar, así que un filtro de precio no
+  tendría sentido para quien navega el catálogo.)
 
   Cada vez que el usuario cambia algo, este componente
   dispara el evento global "filtros:cambio" con el detalle
-  {categoria, precioMin, precioMax, orden}. La página que
-  contiene la grilla de productos escucha ese evento y
-  vuelve a pintar los resultados (ver script en productos.astro).
+  {categoria, orden}. La página que contiene la grilla de
+  productos escucha ese evento y vuelve a pintar los resultados
+  (ver script en productos.astro).
 
   Prop `categoriaFija`: si se pasa (ej: desde /categoria/bebidas),
   se oculta el selector de categoría porque ya está implícita
@@ -40,21 +43,9 @@ const { categoriaFija } = Astro.props;
   )}
 
   <div class="filtros__grupo">
-    <label for="filtro-precio-min">💲 Precio mín.</label>
-    <input type="number" id="filtro-precio-min" data-filtro="precioMin" min="0" placeholder="0" />
-  </div>
-
-  <div class="filtros__grupo">
-    <label for="filtro-precio-max">💲 Precio máx.</label>
-    <input type="number" id="filtro-precio-max" data-filtro="precioMax" min="0" placeholder="Sin límite" />
-  </div>
-
-  <div class="filtros__grupo">
     <label for="filtro-orden">↕ Ordenar por</label>
     <select id="filtro-orden" data-filtro="orden">
       <option value="relevancia">Relevancia</option>
-      <option value="mas-barato">Más barato</option>
-      <option value="mas-caro">Más caro</option>
       <option value="nombre-az">Nombre A-Z</option>
       <option value="nombre-za">Nombre Z-A</option>
     </select>
@@ -114,8 +105,6 @@ const { categoriaFija } = Astro.props;
   function emitirCambioFiltros() {
     const detalle = {
       categoria: document.getElementById('filtro-categoria')?.value ?? '',
-      precioMin: document.getElementById('filtro-precio-min')?.value ?? '',
-      precioMax: document.getElementById('filtro-precio-max')?.value ?? '',
       orden: document.getElementById('filtro-orden')?.value ?? 'relevancia',
     };
     window.dispatchEvent(new CustomEvent('filtros:cambio', { detail: detalle }));
@@ -123,10 +112,5 @@ const { categoriaFija } = Astro.props;
 
   document.querySelectorAll('[data-filtro]').forEach((campo) => {
     campo.addEventListener('change', emitirCambioFiltros);
-    campo.addEventListener('input', () => {
-      // Debounce corto para los inputs numéricos de precio
-      clearTimeout(campo._temporizador);
-      campo._temporizador = setTimeout(emitirCambioFiltros, 300);
-    });
   });
 </script>

@@ -21,6 +21,13 @@
   transform: translateY(-4px);
 }
 
+.tarjeta-producto__link {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: inherit;
+}
+
 .tarjeta-producto__imagen-wrap {
   aspect-ratio: 1 / 1;
   background-color: var(--color-fondo);
@@ -59,20 +66,48 @@
   line-height: 1.3;
 }
 
-.tarjeta-producto__precio {
-  font-size: var(--fs-lg);
-  font-weight: 700;
-  color: var(--color-primario);
-  margin-top: auto;
-}
-
 .tarjeta-producto__stock {
   font-size: var(--fs-xs);
   color: var(--color-texto-secundario);
+  margin-top: auto;
 }
 
 .tarjeta-producto__pie {
   padding: 0 var(--space-md) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Selector de cantidad ➖ N ➕ dentro de la tarjeta */
+.tarjeta-producto__cantidad {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: 0.35rem 0;
+  background-color: var(--color-fondo);
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-md);
+}
+
+.tarjeta-producto__cantidad-valor {
+  min-width: 1.5rem;
+  text-align: center;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+}
+
+.btn-icono-sm {
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 0.8rem;
+  border: none;
+  background-color: transparent;
+}
+
+.btn-icono-sm:hover {
+  background-color: var(--color-tarjeta);
 }
 
 .badge {

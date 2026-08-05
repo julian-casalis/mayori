@@ -36,8 +36,8 @@
 
   <footer class="panel-carrito__footer">
     <div class="panel-carrito__total">
-      <span>Total</span>
-      <strong id="panel-carrito__total-valor">$0</strong>
+      <span>Unidades en el carrito</span>
+      <strong id="panel-carrito__total-valor">0</strong>
     </div>
     <button id="btn-vaciar-carrito" class="btn btn-outline btn-bloque btn-sm">Vaciar carrito</button>
     <button id="btn-enviar-pedido" class="btn btn-whatsapp btn-bloque">🟢 Enviar pedido por WhatsApp</button>
@@ -163,11 +163,6 @@
     white-space: nowrap;
   }
 
-  :global(.item-carrito__precio) {
-    font-size: var(--fs-xs);
-    color: var(--color-texto-secundario);
-  }
-
   :global(.item-carrito__acciones) {
     display: flex;
     align-items: center;
@@ -243,9 +238,9 @@
   async function renderizarCarrito() {
     if (!window.Carrito || !contenedor) return;
     const items = await window.Carrito.obtenerItemsDetallados();
-    const total = items.reduce((acc, i) => acc + i.precio * i.cantidad, 0);
+    const unidades = items.reduce((acc, i) => acc + i.cantidad, 0);
 
-    totalValor.textContent = window.Carrito.formatearPrecio(total);
+    totalValor.textContent = String(unidades);
     btnEnviar.disabled = items.length === 0;
     btnVaciar.disabled = items.length === 0;
 
@@ -268,7 +263,6 @@
           </div>
           <div class="item-carrito__info">
             <span class="item-carrito__nombre">${item.nombre}</span>
-            <span class="item-carrito__precio">${window.Carrito.formatearPrecio(item.precio)} c/u</span>
             <div class="item-carrito__acciones">
               <div class="selector-cantidad" data-selector-cantidad="${item.id}">
                 <button class="btn-icono" data-restar="${item.id}" aria-label="Restar una unidad">➖</button>

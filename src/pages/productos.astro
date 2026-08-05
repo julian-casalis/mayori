@@ -73,22 +73,13 @@ const busquedaInicial = Astro.url.searchParams.get('buscar') ?? '';
   let estado = {
     texto: busquedaInicial || '',
     categoria: '',
-    precioMin: '',
-    precioMax: '',
     orden: 'relevancia',
   };
 
-  function formatearPrecio(numero) {
-    return new Intl.NumberFormat('es-AR', {
-      style: 'currency',
-      currency: 'ARS',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(numero);
-  }
-
-  // Genera el MISMO markup que ProductCard.astro, para que el
-  // botón "Agregar al carrito" (delegado globalmente) funcione igual.
+  // Genera el MISMO markup que ProductCard.astro (sin precio, con
+  // selector de cantidad y link a la vista detallada), para que la
+  // delegación global de eventos definida en ProductCard.astro
+  // (selector de cantidad + botón "Agregar") funcione igual acá.
   function tarjetaHTML(producto) {
     const badge = producto.nuevo
       ? `<span class="badge badge-nuevo">Nuevo</span>`
@@ -104,17 +95,23 @@ const busquedaInicial = Astro.url.searchParams.get('buscar') ?? '';
     return `
       <article class="tarjeta-producto fade-in" data-tarjeta-producto="${producto.id}">
         ${badge}
-        <div class="tarjeta-producto__imagen-wrap">
-          <img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy" width="400" height="400" />
-        </div>
-        <div class="tarjeta-producto__cuerpo">
-          <span class="tarjeta-producto__categoria">${producto.categoria}</span>
-          <h3 class="tarjeta-producto__nombre">${producto.nombre}</h3>
-          ${stockTexto}
-          <span class="tarjeta-producto__precio">${formatearPrecio(producto.precio)}</span>
-        </div>
+        <a href="/producto/${producto.id}" class="tarjeta-producto__link" aria-label="Ver detalle de ${producto.nombre}">
+          <div class="tarjeta-producto__imagen-wrap">
+            <img src="${producto.imagen}" alt="${producto.nombre}" loading="lazy" width="400" height="400" />
+          </div>
+          <div class="tarjeta-producto__cuerpo">
+            <span class="tarjeta-producto__categoria">${producto.categoria}</span>
+            <h3 class="tarjeta-producto__nombre">${producto.nombre}</h3>
+            ${stockTexto}
+          </div>
+        </a>
         <div class="tarjeta-producto__pie">
-          <button class="btn btn-primario btn-bloque btn-agregar" data-agregar-carrito="${producto.id}" aria-label="Agregar ${producto.nombre} al carrito">
+          <div class="tarjeta-producto__cantidad" data-selector-tarjeta="${producto.id}">
+            <button type="button" class="btn-icono btn-icono-sm" data-cantidad-menos="${producto.id}" aria-label="Restar cantidad">➖</button>
+            <span class="tarjeta-producto__cantidad-valor" data-cantidad-tarjeta="${producto.id}">1</span>
+            <button type="button" class="btn-icono btn-icono-sm" data-cantidad-mas="${producto.id}" aria-label="Sumar cantidad">➕</button>
+          </div>
+          <button type="button" class="btn btn-primario btn-bloque btn-agregar" data-agregar-carrito="${producto.id}" aria-label="Agregar ${producto.nombre} al carrito">
             ➕ Agregar
           </button>
         </div>
@@ -139,21 +136,7 @@ const busquedaInicial = Astro.url.searchParams.get('buscar') ?? '';
       resultado = resultado.filter((p) => p.categoria === estado.categoria);
     }
 
-    if (estado.precioMin !== '') {
-      resultado = resultado.filter((p) => p.precio >= Number(estado.precioMin));
-    }
-
-    if (estado.precioMax !== '') {
-      resultado = resultado.filter((p) => p.precio <= Number(estado.precioMax));
-    }
-
     switch (estado.orden) {
-      case 'mas-barato':
-        resultado.sort((a, b) => a.precio - b.precio);
-        break;
-      case 'mas-caro':
-        resultado.sort((a, b) => b.precio - a.precio);
-        break;
       case 'nombre-az':
         resultado.sort((a, b) => a.nombre.localeCompare(b.nombre));
         break;

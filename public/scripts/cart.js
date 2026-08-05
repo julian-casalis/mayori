@@ -150,11 +150,7 @@ async function enviarPedidoPorWhatsapp() {
   const items = await obtenerItemsDetallados();
   if (items.length === 0) return false;
 
-  const lineas = items.map(
-    (item) => `${item.cantidad} x ${item.nombre} — ${formatearPrecio(item.precio * item.cantidad)}`
-  );
-
-  const total = items.reduce((acum, item) => acum + item.precio * item.cantidad, 0);
+  const lineas = items.map((item) => `${item.cantidad} x ${item.nombre}`);
 
   const mensaje = [
     'Hola! 👋 Quiero realizar el siguiente pedido:',
@@ -162,8 +158,6 @@ async function enviarPedidoPorWhatsapp() {
     '----------------------------',
     ...lineas,
     '----------------------------',
-    '',
-    `Total: ${formatearPrecio(total)}`,
     '',
     'Muchas gracias.',
   ].join('\n');
