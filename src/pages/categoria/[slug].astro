@@ -111,16 +111,6 @@ const productosCategoria = productosData.filter((p) => p.categoria === categoria
             ${stockTexto}
           </div>
         </a>
-        <div class="tarjeta-producto__pie">
-          <div class="tarjeta-producto__cantidad" data-selector-tarjeta="${producto.id}">
-            <button type="button" class="btn-icono btn-icono-sm" data-cantidad-menos="${producto.id}" aria-label="Restar cantidad">➖</button>
-            <span class="tarjeta-producto__cantidad-valor" data-cantidad-tarjeta="${producto.id}">1</span>
-            <button type="button" class="btn-icono btn-icono-sm" data-cantidad-mas="${producto.id}" aria-label="Sumar cantidad">➕</button>
-          </div>
-          <button type="button" class="btn btn-primario btn-bloque btn-agregar" data-agregar-carrito="${producto.id}" aria-label="Agregar ${producto.nombre} al carrito">
-            ➕ Agregar
-          </button>
-        </div>
       </article>
     `;
   }

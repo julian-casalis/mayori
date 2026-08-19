@@ -26,7 +26,7 @@ const busquedaInicial = Astro.url.searchParams.get('buscar') ?? '';
 <Layout title="Productos — La Distribuidora">
   <section class="seccion contenedor">
     <h1 class="seccion-titulo">📦 Catálogo completo</h1>
-    <p class="seccion-subtitulo">Buscá, filtrá y armá tu pedido</p>
+    <p class="seccion-subtitulo">Buscá y filtrá lo que necesitás</p>
 
     <div class="productos__buscador">
       <SearchBar variante="pagina" id="buscador-pagina" valorInicial={busquedaInicial} />
@@ -76,10 +76,9 @@ const busquedaInicial = Astro.url.searchParams.get('buscar') ?? '';
     orden: 'relevancia',
   };
 
-  // Genera el MISMO markup que ProductCard.astro (sin precio, con
-  // selector de cantidad y link a la vista detallada), para que la
-  // delegación global de eventos definida en ProductCard.astro
-  // (selector de cantidad + botón "Agregar") funcione igual acá.
+  // Genera el MISMO markup que ProductCard.astro (tarjeta de catálogo,
+  // sin precio, sin botón de agregar ni selector de cantidad), con link
+  // a la vista detallada del producto.
   function tarjetaHTML(producto) {
     const badge = producto.nuevo
       ? `<span class="badge badge-nuevo">Nuevo</span>`
@@ -105,16 +104,6 @@ const busquedaInicial = Astro.url.searchParams.get('buscar') ?? '';
             ${stockTexto}
           </div>
         </a>
-        <div class="tarjeta-producto__pie">
-          <div class="tarjeta-producto__cantidad" data-selector-tarjeta="${producto.id}">
-            <button type="button" class="btn-icono btn-icono-sm" data-cantidad-menos="${producto.id}" aria-label="Restar cantidad">➖</button>
-            <span class="tarjeta-producto__cantidad-valor" data-cantidad-tarjeta="${producto.id}">1</span>
-            <button type="button" class="btn-icono btn-icono-sm" data-cantidad-mas="${producto.id}" aria-label="Sumar cantidad">➕</button>
-          </div>
-          <button type="button" class="btn btn-primario btn-bloque btn-agregar" data-agregar-carrito="${producto.id}" aria-label="Agregar ${producto.nombre} al carrito">
-            ➕ Agregar
-          </button>
-        </div>
       </article>
     `;
   }

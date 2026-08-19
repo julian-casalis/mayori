@@ -72,44 +72,6 @@
   margin-top: auto;
 }
 
-.tarjeta-producto__pie {
-  padding: 0 var(--space-md) var(--space-md);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-sm);
-}
-
-/* Selector de cantidad ➖ N ➕ dentro de la tarjeta */
-.tarjeta-producto__cantidad {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-md);
-  padding: 0.35rem 0;
-  background-color: var(--color-fondo);
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radio-md);
-}
-
-.tarjeta-producto__cantidad-valor {
-  min-width: 1.5rem;
-  text-align: center;
-  font-weight: 700;
-  font-size: var(--fs-sm);
-}
-
-.btn-icono-sm {
-  width: 1.75rem;
-  height: 1.75rem;
-  font-size: 0.8rem;
-  border: none;
-  background-color: transparent;
-}
-
-.btn-icono-sm:hover {
-  background-color: var(--color-tarjeta);
-}
-
 .badge {
   position: absolute;
   top: var(--space-sm);
@@ -128,17 +90,6 @@
 
 .badge-destacado {
   background-color: var(--color-advertencia);
-}
-
-/* Animación breve al agregar al carrito */
-@keyframes pulseAgregado {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.06); }
-  100% { transform: scale(1); }
-}
-
-.tarjeta-producto.agregado {
-  animation: pulseAgregado 320ms ease;
 }
 
 /* ---------- Tarjeta de categoría ---------- */

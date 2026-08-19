@@ -5,17 +5,11 @@
   Tarjeta individual de producto. Se usa en el home
   (destacados/nuevos), en /productos y en /categoria/[slug].
 
-  - La imagen y el nombre son un link a la vista detallada
-    del producto (/producto/[id]).
-  - Tiene un selector de cantidad local (➖ cantidad ➕) que
-    NO toca el carrito todavía: solo define cuántas unidades
-    se van a agregar de una sola vez.
-  - El botón "Agregar al carrito" toma esa cantidad y recién
-    ahí llama a `window.Carrito.agregar()` (definido en cart.js),
-    dispara una animación corta de feedback y reinicia el
-    selector a 1.
-
-  No se muestra el precio en ningún lugar de la tarjeta.
+  El sitio funciona como CATÁLOGO: esta tarjeta es solo
+  informativa (imagen, nombre, categoría, stock) y lleva a
+  la vista detallada del producto al hacer click. No tiene
+  botón de "Agregar" ni selector de cantidad, y no muestra
+  precio, porque no hay carrito de compras en el sitio.
 
   Recibe el producto completo como prop (ver forma en
   src/data/productos.json).
@@ -59,99 +53,4 @@ const { producto } = Astro.props;
       )}
     </div>
   </a>
-
-  <div class="tarjeta-producto__pie">
-    <div class="tarjeta-producto__cantidad" data-selector-tarjeta={producto.id}>
-      <button type="button" class="btn-icono btn-icono-sm" data-cantidad-menos={producto.id} aria-label="Restar cantidad">➖</button>
-      <span class="tarjeta-producto__cantidad-valor" data-cantidad-tarjeta={producto.id}>1</span>
-      <button type="button" class="btn-icono btn-icono-sm" data-cantidad-mas={producto.id} aria-label="Sumar cantidad">➕</button>
-    </div>
-    <button
-      type="button"
-      class="btn btn-primario btn-bloque btn-agregar"
-      data-agregar-carrito={producto.id}
-      aria-label={`Agregar ${producto.nombre} al carrito`}
-    >
-      ➕ Agregar
-    </button>
-  </div>
 </article>
-
-<script>
-  // Delegación de eventos: un solo listener en el documento maneja
-  // TODOS los botones de TODAS las tarjetas de producto de la página,
-  // sin importar cuántas haya ni si se regeneraron al filtrar.
-  //
-  // Se manejan dos cosas independientes:
-  // 1) El selector de cantidad ➖ / ➕ de CADA tarjeta: es un contador
-  //    LOCAL a la tarjeta (todavía no toca el carrito), para elegir
-  //    cuántas unidades agregar de una sola vez.
-  // 2) El botón "Agregar al carrito": toma el número elegido en el
-  //    selector de esa tarjeta y recién ahí llama a
-  //    window.Carrito.agregar(id, cantidad). Si el producto ya estaba
-  //    en el carrito, cart.js suma la cantidad al registro existente
-  //    en vez de duplicarlo. Después reinicia el selector a 1.
-  if (!window.__listenerAgregarCarritoInicializado) {
-    window.__listenerAgregarCarritoInicializado = true;
-
-    const CANTIDAD_MAXIMA = 99;
-
-    function leerCantidadTarjeta(id) {
-      const span = document.querySelector(`[data-cantidad-tarjeta="${id}"]`);
-      return span ? Number(span.textContent) : 1;
-    }
-
-    function escribirCantidadTarjeta(id, valor) {
-      const span = document.querySelector(`[data-cantidad-tarjeta="${id}"]`);
-      if (span) span.textContent = String(valor);
-    }
-
-    document.addEventListener('click', (evento) => {
-      const btnMas = evento.target.closest('[data-cantidad-mas]');
-      const btnMenos = evento.target.closest('[data-cantidad-menos]');
-      const btnAgregar = evento.target.closest('[data-agregar-carrito]');
-
-      // --- Selector de cantidad local (todavía no toca el carrito) ---
-      if (btnMas) {
-        const id = btnMas.dataset.cantidadMas;
-        const actual = leerCantidadTarjeta(id);
-        escribirCantidadTarjeta(id, Math.min(actual + 1, CANTIDAD_MAXIMA));
-        return;
-      }
-
-      if (btnMenos) {
-        const id = btnMenos.dataset.cantidadMenos;
-        const actual = leerCantidadTarjeta(id);
-        escribirCantidadTarjeta(id, Math.max(actual - 1, 1));
-        return;
-      }
-
-      // --- Agregar al carrito con la cantidad elegida ---
-      if (!btnAgregar || !window.Carrito) return;
-
-      const id = Number(btnAgregar.dataset.agregarCarrito);
-      const cantidadElegida = leerCantidadTarjeta(id);
-      window.Carrito.agregar(id, cantidadElegida);
-
-      // Feedback visual: pulso en la tarjeta + texto momentáneo en el botón
-      const tarjeta = btnAgregar.closest('[data-tarjeta-producto]');
-      if (tarjeta) {
-        tarjeta.classList.remove('agregado');
-        // Forzamos reflow para poder re-disparar la animación
-        void tarjeta.offsetWidth;
-        tarjeta.classList.add('agregado');
-      }
-
-      const textoOriginal = btnAgregar.textContent;
-      btnAgregar.textContent = cantidadElegida > 1 ? `✅ Agregado x${cantidadElegida}` : '✅ Agregado';
-      btnAgregar.disabled = true;
-      setTimeout(() => {
-        btnAgregar.textContent = textoOriginal;
-        btnAgregar.disabled = false;
-      }, 900);
-
-      // Reiniciamos el selector de la tarjeta a 1 para el próximo agregado
-      escribirCantidadTarjeta(id, 1);
-    });
-  }
-</script>

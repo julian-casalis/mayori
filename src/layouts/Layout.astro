@@ -3,18 +3,17 @@
   Layout.astro
   --------------------------------------------------
   Este es el "molde" que envuelve a TODAS las páginas
-  del sitio (index, productos, carrito, etc.).
+  del sitio (index, productos, categoría, producto, etc.).
 
   Acá se define:
   - El <head> con metadatos, fuentes y estilos globales
   - El Navbar (arriba) y el Footer (abajo), que se repiten
     en todas las páginas
-  - El CartSidebar: el panel lateral del carrito, que vive
-    fuera del <slot /> porque debe poder abrirse desde
-    cualquier página (se controla con JS, no con navegación)
   - El FloatingWhatsApp: botón flotante de contacto directo
-  - La carga de cart.js, que expone window.Carrito a toda
-    la app para que cualquier componente pueda usar el carrito
+
+  El sitio funciona como catálogo informativo (sin carrito
+  de compras), así que acá no se carga ningún script de
+  carrito: solo el contenido de cada página.
 
   El contenido específico de cada página se inyecta en
   <slot />.
@@ -22,7 +21,6 @@
 */
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import CartSidebar from '../components/CartSidebar.astro';
 import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
 import '../styles/global.css';
 
@@ -33,7 +31,7 @@ interface Props {
 
 const {
   title = 'La Distribuidora — Golosinas, bebidas, librería y más',
-  description = 'Catálogo online de golosinas, galletitas, bebidas, jugos, librería, chocolates y snacks. Armá tu pedido y lo coordinamos por WhatsApp.',
+  description = 'Catálogo online de golosinas, galletitas, bebidas, jugos, librería, chocolates y snacks. Consultá por WhatsApp.',
 } = Astro.props;
 ---
 
@@ -63,17 +61,7 @@ const {
 
     <Footer />
 
-    <!-- Panel lateral del carrito: disponible en toda la app -->
-    <CartSidebar />
-
     <!-- Botón flotante de WhatsApp -->
     <FloatingWhatsApp />
-
-    <!--
-      cart.js se carga UNA sola vez acá en el layout, por eso
-      window.Carrito está disponible en todas las páginas sin
-      tener que volver a importarlo.
-    -->
-    <script src="/scripts/cart.js" is:inline></script>
   </body>
 </html>
