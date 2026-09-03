@@ -1,4 +1,10 @@
 [
+    {
+    "id": "jugos",
+    "nombre": "limpieza",
+    "emoji": "🧹",
+    "descripcion": "Articulos de limpieza"
+  },
   {
     "id": "golosinas",
     "nombre": "Golosinas",
@@ -16,12 +22,6 @@
     "nombre": "Bebidas",
     "emoji": "🥤",
     "descripcion": "Gaseosas, aguas y bebidas frías"
-  },
-  {
-    "id": "jugos",
-    "nombre": "Jugos",
-    "emoji": "🧃",
-    "descripcion": "Jugos exprimidos y en polvo"
   },
   {
     "id": "libreria",
