@@ -1,5 +1,5 @@
 [
-    {
+   {
     "id": "jugos",
     "nombre": "limpieza",
     "emoji": "🧹",
@@ -46,5 +46,65 @@
     "nombre": "Varios",
     "emoji": "🧉",
     "descripcion": "Productos varios de almacén"
+  },
+  {
+    "id": "limpieza",
+    "nombre": "Limpieza",
+    "emoji": "🧽",
+    "descripcion": "Artículos de limpieza para el hogar"
+  },
+  {
+    "id": "perfumeria",
+    "nombre": "Perfumería",
+    "emoji": "🧴",
+    "descripcion": "Cuidado personal y perfumería"
+  },
+  {
+    "id": "cosmetica",
+    "nombre": "Cosmética",
+    "emoji": "💄",
+    "descripcion": "Productos de cosmética"
+  },
+  {
+    "id": "merceria",
+    "nombre": "Mercería",
+    "emoji": "🧵",
+    "descripcion": "Hilos, agujas y artículos de mercería"
+  },
+  {
+    "id": "bazar",
+    "nombre": "Bazar",
+    "emoji": "🏺",
+    "descripcion": "Artículos varios de bazar y ferretería"
+  },
+  {
+    "id": "bebe",
+    "nombre": "Bebés",
+    "emoji": "🍼",
+    "descripcion": "Artículos para bebés"
+  },
+  {
+    "id": "tabaco",
+    "nombre": "Tabaquería",
+    "emoji": "🚬",
+    "descripcion": "Cigarrillos y artículos de tabaquería"
+  },
+  {
+    "id": "juguetes",
+    "nombre": "Juguetería",
+    "emoji": "🧸",
+    "descripcion": "Juguetes y accesorios"
+  },
+  {
+    "id": "bolsas",
+    "nombre": "Bolsas",
+    "emoji": "🛍️",
+    "descripcion": "Bolsas y envoltorios por mayor"
+  },
+  {
+    "id": "descartables",
+    "nombre": "Descartables",
+    "emoji": "🥤",
+    "descripcion": "Vasos, platos y artículos descartables para eventos"
   }
 ]
