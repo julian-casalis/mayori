@@ -14,20 +14,18 @@
      src/data/productos.json.
 --------------------------------------------------
 */
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import CategoryCard from '../components/CategoryCard.astro';
-import ProductCard from '../components/ProductCard.astro';
-import categorias from '../data/categorias.json';
-import productos from '../data/productos.json';
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import CategoryCard from "../components/CategoryCard.astro";
+import ProductCard from "../components/ProductCard.astro";
+import categorias from "../data/categorias.json";
+import productos from "../data/productos.json";
 
 const productosDestacados = productos.filter((p) => p.destacado).slice(0, 8);
 const productosNuevos = productos.filter((p) => p.nuevo).slice(0, 8);
 ---
 
 <Layout>
-  <Hero />
-
   <section id="categorias" class="seccion contenedor">
     <h2 class="seccion-titulo">Categorías</h2>
     <p class="seccion-subtitulo">Encontrá rápido lo que buscás</p>
@@ -38,9 +36,15 @@ const productosNuevos = productos.filter((p) => p.nuevo).slice(0, 8);
 
   <section id="destacados" class="seccion contenedor">
     <h2 class="seccion-titulo">⭐ Más vendidos</h2>
-    <p class="seccion-subtitulo">Los productos favoritos de nuestros clientes</p>
+    <p class="seccion-subtitulo">
+      Los productos favoritos de nuestros clientes
+    </p>
     <div class="grilla-productos">
-      {productosDestacados.map((producto) => <ProductCard producto={producto} />)}
+      {
+        productosDestacados.map((producto) => (
+          <ProductCard producto={producto} />
+        ))
+      }
     </div>
   </section>
 
@@ -92,7 +96,9 @@ const productosNuevos = productos.filter((p) => p.nuevo).slice(0, 8);
     border-radius: var(--radio-lg);
     padding: var(--space-lg);
     text-align: center;
-    transition: transform var(--transicion-normal), box-shadow var(--transicion-normal);
+    transition:
+      transform var(--transicion-normal),
+      box-shadow var(--transicion-normal);
   }
 
   .beneficio:hover {

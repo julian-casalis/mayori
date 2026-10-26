@@ -1152,28 +1152,7 @@
     "destacado": false,
     "nuevo": false
   },
-  {
-    "id": 1207,
-    "nombre": "TRAVIATA PACK-.ECOx5u (16u)",
-    "categoria": "galletitas",
-    "precio": 2300,
-    "stock": 50,
-    "descripcion": "Galletitas presentación por mayor (x5 unidades). Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/tpe.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1208,
-    "nombre": "Gall SALADIX 100g(VARIOS)(24u)",
-    "categoria": "galletitas",
-    "precio": 1572,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Varios, presentación por mayor (x100 gramos). Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/gsv.png",
-    "destacado": false,
-    "nuevo": false
-  },
+
   {
     "id": 1209,
     "nombre": "Gall SALADIX 100g(PIZZA)(24u)",
@@ -1274,17 +1253,6 @@
     "nuevo": false
   },
   {
-    "id": 1218,
-    "nombre": "Gall.Mana Rell. X 165grs(VARIOS (36u)",
-    "categoria": "galletitas",
-    "precio": 1530,
-    "stock": 50,
-    "descripcion": "Galletitas presentación por mayor (x165 gramos). Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/gmrxv.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
     "id": 1219,
     "nombre": "Gall.Mana Rell. X 165grs (FRUTILLA) (36u)",
     "categoria": "galletitas",
@@ -1317,17 +1285,7 @@
     "destacado": false,
     "nuevo": false
   },
-  {
-    "id": 1222,
-    "nombre": "Gall. MaNa SIMPLE (VARIOS%)x 145grs (36u)",
-    "categoria": "galletitas",
-    "precio": 1168,
-    "stock": 50,
-    "descripcion": "Galletitas presentación por mayor (x145 gramos). Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/gmsvx.png",
-    "destacado": false,
-    "nuevo": false
-  },
+ 
   {
     "id": 1223,
     "nombre": "Gall. MaNa SIMPLE (LECHE)x 145grs (36u)",
@@ -1446,17 +1404,6 @@
     "stock": 50,
     "descripcion": "Galletitas sabor Plv, presentación por mayor (x124 gramos). Ideal para reventa en kiosco o almacén.",
     "imagen": "/productos/gpcbx.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1234,
-    "nombre": "GALL COFLER RELLENAS(VARIOS) x85g (27u)",
-    "categoria": "galletitas",
-    "precio": 1089,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Varios, presentación por mayor (x85 gramos). Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/gcrv.png",
     "destacado": false,
     "nuevo": false
   },
