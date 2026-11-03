@@ -1096,10 +1096,9 @@
     "destacado": false,
     "nuevo": false
   },
-
   {
     "id": 1202,
-    "nombre": "GALL SALVADO HOGAREÑAS x3 600g (10u)",
+    "nombre": "GALLETITAS SALVADO HOGAREÑAS x3 600g (10u)",
     "categoria": "galletitas",
     "precio": 3350,
     "stock": 50,
@@ -1110,7 +1109,7 @@
   },
   {
     "id": 1203,
-    "nombre": "GALL SALVADO BAGLEY x3 507g (12u)",
+    "nombre": "GALLETITAS SALVADO BAGLEY x3 507g (12u)",
     "categoria": "galletitas",
     "precio": 3350,
     "stock": 50,
@@ -1121,7 +1120,7 @@
   },
   {
     "id": 1204,
-    "nombre": "GALL. MEDIA TARDE x315gr (14u)",
+    "nombre": "GALLETILAS MEDIA TARDE x315gr (14u)",
     "categoria": "galletitas",
     "precio": 1689,
     "stock": 50,
@@ -1132,7 +1131,7 @@
   },
   {
     "id": 1205,
-    "nombre": "Gall salada serranitas pack x315grs (14u)",
+    "nombre": "GALLETITAS salada serranitas pack x315grs (14u)",
     "categoria": "galletitas",
     "precio": 1760,
     "stock": 50,
@@ -1155,7 +1154,7 @@
 
   {
     "id": 1209,
-    "nombre": "Gall SALADIX 100g(PIZZA)(24u)",
+    "nombre": "GALLETITAS SALADIX PIZZA 100g",
     "categoria": "galletitas",
     "precio": 1572,
     "stock": 50,
@@ -1166,7 +1165,7 @@
   },
   {
     "id": 1210,
-    "nombre": "Gall SALADIX 100g(JAMON)(24u)",
+    "nombre": "GALLETITAS SALADIX JAMON 100g",
     "categoria": "galletitas",
     "precio": 1572,
     "stock": 50,
@@ -1177,7 +1176,7 @@
   },
   {
     "id": 1211,
-    "nombre": "Gall SALADIX 100g(DUO)(24u)",
+    "nombre": "GALLETITAS SALADIX DUO 100g",
     "categoria": "galletitas",
     "precio": 1572,
     "stock": 50,
@@ -1188,7 +1187,7 @@
   },
   {
     "id": 1212,
-    "nombre": "Gall SALADIX 100g(CALABRESA)(24u)",
+    "nombre": "GALLETITAS SALADIX CALABRESA 100g",
     "categoria": "galletitas",
     "precio": 1572,
     "stock": 50,
@@ -1199,7 +1198,7 @@
   },
   {
     "id": 1213,
-    "nombre": "REX ORIGINAL ESTUCHE x125g (16u)",
+    "nombre": "REX ORIGINAL ESTUCHE x125g",
     "categoria": "galletitas",
     "precio": 1965,
     "stock": 50,
@@ -1210,7 +1209,7 @@
   },
   {
     "id": 1214,
-    "nombre": "KESITAS ORIGINAL ESTUCHE x125g (16u)",
+    "nombre": "KESITAS ORIGINAL ESTUCHE x125g",
     "categoria": "galletitas",
     "precio": 1965,
     "stock": 50,
@@ -1221,7 +1220,7 @@
   },
   {
     "id": 1215,
-    "nombre": "SALADIX SNACK QUESITOS 50GRS (20u)",
+    "nombre": "SALADIX SNACK QUESITOS 50GRS",
     "categoria": "galletitas",
     "precio": 989,
     "stock": 50,
@@ -1232,7 +1231,7 @@
   },
   {
     "id": 1216,
-    "nombre": "REJILLAS CROSS SALADIX 67g (32u)(ORIG)",
+    "nombre": "REJILLAS SALADIX CROSS  67g",
     "categoria": "galletitas",
     "precio": 998,
     "stock": 50,
@@ -1243,7 +1242,7 @@
   },
   {
     "id": 1217,
-    "nombre": "REJILLAS CROSS SALADIX 67g (32u)(PIZZA)",
+    "nombre": "REJILLAS SALADIX CROSS PIZZA 67g",
     "categoria": "galletitas",
     "precio": 998,
     "stock": 50,
@@ -1254,7 +1253,7 @@
   },
   {
     "id": 1219,
-    "nombre": "Gall.Mana Rell. X 165grs (FRUTILLA) (36u)",
+    "nombre": "Galletitas Mana Rellena Frutilla X 165grs",
     "categoria": "galletitas",
     "precio": 1530,
     "stock": 50,
@@ -1265,7 +1264,7 @@
   },
   {
     "id": 1220,
-    "nombre": "Gall.Mana Rell. X 165grs (LIMON) (36u)",
+    "nombre": "Galletitas Mana Rellena Limon X 165grs",
     "categoria": "galletitas",
     "precio": 1530,
     "stock": 50,
@@ -1276,7 +1275,7 @@
   },
   {
     "id": 1221,
-    "nombre": "Gall.Mana Rell. X 165grs (CHOCOLATE) (36u)",
+    "nombre": "Galletitas Mana Rellena Chocolate X 165grs",
     "categoria": "galletitas",
     "precio": 1530,
     "stock": 50,
@@ -1285,10 +1284,9 @@
     "destacado": false,
     "nuevo": false
   },
- 
   {
     "id": 1223,
-    "nombre": "Gall. MaNa SIMPLE (LECHE)x 145grs (36u)",
+    "nombre": "Galletitas Mana SIMPLE sabor LECHE x 145grs",
     "categoria": "galletitas",
     "precio": 1168,
     "stock": 50,
@@ -1299,7 +1297,7 @@
   },
   {
     "id": 1224,
-    "nombre": "Gall. MaNa SIMPLE (VAINILLAS)x 145grs (36u)",
+    "nombre": "Galleatitas Mana SIMPLE sabor VAINILLAS xd 145grs",
     "categoria": "galletitas",
     "precio": 1168,
     "stock": 50,
@@ -1309,19 +1307,8 @@
     "nuevo": false
   },
   {
-    "id": 1225,
-    "nombre": "Gall. MaNa SIMPLE (AZUCARADA)x 145grs (36u)",
-    "categoria": "galletitas",
-    "precio": 1168,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Azucarada, presentación por mayor (x145 gramos). Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/gmsax.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
     "id": 1226,
-    "nombre": "Gall. MaNa SIMPLE (LIMON)x 145grs (36u)",
+    "nombre": "Galletitas Mana SIMPLE sabor LIMONx 145grs",
     "categoria": "galletitas",
     "precio": 1168,
     "stock": 50,
@@ -1332,7 +1319,7 @@
   },
   {
     "id": 1227,
-    "nombre": "Gall. Surt.BAGLEY x 398grs",
+    "nombre": "Galletitas Surtidas BAGLEY x 398grs",
     "categoria": "galletitas",
     "precio": 3250,
     "stock": 50,
@@ -1343,7 +1330,7 @@
   },
   {
     "id": 1228,
-    "nombre": "Gall.Surtida Diversion x398grs",
+    "nombre": "Galletitas Surtida Diversion x398grs",
     "categoria": "galletitas",
     "precio": 2690,
     "stock": 50,
@@ -1365,7 +1352,7 @@
   },
   {
     "id": 1230,
-    "nombre": "Gall. SONRISASS franb. 118grs (12/36u)",
+    "nombre": "Galletitas SONRISASS 118grs",
     "categoria": "galletitas",
     "precio": 1390,
     "stock": 50,
@@ -1376,7 +1363,7 @@
   },
   {
     "id": 1231,
-    "nombre": "Gall MERENGADAS Frut. X 93 grs (12/36u)",
+    "nombre": "GALLETITAS MERENGADAS 93grs",
     "categoria": "galletitas",
     "precio": 1390,
     "stock": 50,
@@ -1387,7 +1374,7 @@
   },
   {
     "id": 1232,
-    "nombre": "GALL (plv) ROCLETS x 118grs (36u)",
+    "nombre": "GALLETITAS ROCLETS x 118grs",
     "categoria": "galletitas",
     "precio": 1489,
     "stock": 50,
@@ -1398,7 +1385,7 @@
   },
   {
     "id": 1233,
-    "nombre": "GALL (plv) COFLER BLOCK x 124grs (30u)",
+    "nombre": "GALLETITAS COFLER BLOCK x 124grs",
     "categoria": "galletitas",
     "precio": 1489,
     "stock": 50,
@@ -1409,7 +1396,7 @@
   },
   {
     "id": 1235,
-    "nombre": "GALL COFLER RELLENAS(BONOBOM) x85g (27u)",
+    "nombre": "GALLETITAS COFLER RELLENAS(BONOBOM) x85g (27u)",
     "categoria": "galletitas",
     "precio": 1089,
     "stock": 50,
@@ -1420,7 +1407,7 @@
   },
   {
     "id": 1236,
-    "nombre": "GALL COFLER RELLENAS (CHOCOLATE) x85g (27u)",
+    "nombre": "GALLETITAS COFLER RELLENAS (CHOCOLATE) x85g",
     "categoria": "galletitas",
     "precio": 1089,
     "stock": 50,
@@ -1431,7 +1418,7 @@
   },
   {
     "id": 1237,
-    "nombre": "GALL COFLER RELLENAS (VAINILLA)x85g (27u)",
+    "nombre": "GALLETITAS COFLER RELLENAS (VAINILLA)x85g",
     "categoria": "galletitas",
     "precio": 1089,
     "stock": 50,
@@ -1442,7 +1429,7 @@
   },
   {
     "id": 1238,
-    "nombre": "GRAN PALITO salado J.C x 150 grs (36/12)",
+    "nombre": "GRAN PALITO salado J.C x 150 grs",
     "categoria": "snacks",
     "precio": 1118,
     "stock": 50,
@@ -1464,7 +1451,7 @@
   },
   {
     "id": 1240,
-    "nombre": "Mani REPEc/ ManteK J.C x100grs (18u)",
+    "nombre": "Mani REPEc/ ManteK J.C x100grs",
     "categoria": "snacks",
     "precio": 1059,
     "stock": 50,
@@ -1475,7 +1462,7 @@
   },
   {
     "id": 1241,
-    "nombre": "Mani Tostado CON PIEL x100grs (18u)",
+    "nombre": "Mani Tostado CON PIEL x100grs",
     "categoria": "snacks",
     "precio": 1059,
     "stock": 50,
@@ -1550,20 +1537,10 @@
     "destacado": false,
     "nuevo": false
   },
-  {
-    "id": 1248,
-    "nombre": "CONIX Juli Croc conitos 70g (16u)",
-    "categoria": "snacks",
-    "precio": 1489,
-    "stock": 50,
-    "descripcion": "Snack salado presentación por mayor. Ideal para copetín, kiosco o distribuidora.",
-    "imagen": "/productos/cjcc.png",
-    "destacado": false,
-    "nuevo": false
-  },
+
   {
     "id": 1249,
-    "nombre": "ExtraQuEsO Chizito MeTaLiZaDo x65g(14u)",
+    "nombre": "ExtraQuEsO Chizito MeTaLiZaDo x65g",
     "categoria": "snacks",
     "precio": 899,
     "stock": 50,
@@ -1574,7 +1551,7 @@
   },
   {
     "id": 1250,
-    "nombre": "JULICROC chicito AMARILLO x 45 grs (15u)",
+    "nombre": "JULICROC chicito AMARILLO x 45 grs",
     "categoria": "snacks",
     "precio": 465,
     "stock": 50,
@@ -1860,7 +1837,7 @@
   },
   {
     "id": 1276,
-    "nombre": "GALL AZUCARADAS BEMJA x300grs (12u)",
+    "nombre": "GALLETITAS AZUCARADAS BEMJA x300grs (12u)",
     "categoria": "galletitas",
     "precio": 1115,
     "stock": 50,
@@ -2311,7 +2288,7 @@
   },
   {
     "id": 1317,
-    "nombre": "TRIO GALL 500GR (VARIETTE) (10u)",
+    "nombre": "TRIO GALLETITAS 500GR (VARIETTE) (10u)",
     "categoria": "galletitas",
     "precio": 2319,
     "stock": 50,
@@ -2322,7 +2299,7 @@
   },
   {
     "id": 1318,
-    "nombre": "TRIO GALL 500GR (VARIOS) (10u)",
+    "nombre": "TRIO GALLETITAS 500GR (VARIOS) (10u)",
     "categoria": "galletitas",
     "precio": 2190,
     "stock": 50,
