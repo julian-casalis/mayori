@@ -1692,17 +1692,7 @@
     "destacado": false,
     "nuevo": false
   },
-  {
-    "id": 1263,
-    "nombre": "MIX CROC 45grs (24u)",
-    "categoria": "snacks",
-    "precio": 698,
-    "stock": 50,
-    "descripcion": "Snack salado presentación por mayor. Ideal para copetín, kiosco o distribuidora.",
-    "imagen": "/productos/mc3.png",
-    "destacado": false,
-    "nuevo": false
-  },
+
   {
     "id": 1264,
     "nombre": "Pitusas CHICAS x 160grs (30u) (CHOCOLATE)",
@@ -1813,17 +1803,7 @@
     "destacado": false,
     "nuevo": false
   },
-  {
-    "id": 1274,
-    "nombre": "GALL.MAURI SIN SAL x400grs (12u)",
-    "categoria": "galletitas",
-    "precio": 2300,
-    "stock": 50,
-    "descripcion": "Galletitas presentación por mayor (x400 gramos). Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/gmss.png",
-    "destacado": false,
-    "nuevo": false
-  },
+
   {
     "id": 1275,
     "nombre": "Benja PEPA(CLASICO) 400 grs (12u)",
@@ -1846,17 +1826,7 @@
     "destacado": false,
     "nuevo": false
   },
-  {
-    "id": 1277,
-    "nombre": "MARINERAS BENJAMIN x300g (VARIOS)(12u)",
-    "categoria": "galletitas",
-    "precio": 1115,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Varios, presentación por mayor (x300 gramos). Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/mbv.png",
-    "destacado": false,
-    "nuevo": false
-  },
+
   {
     "id": 1278,
     "nombre": "MARINERAS BENJAMIN x300g (CLASICAS)(12u)",
@@ -1901,50 +1871,7 @@
     "destacado": false,
     "nuevo": false
   },
-  {
-    "id": 1282,
-    "nombre": "GAL BENJA 350grs ( NAK YAB ANILL) (10u)",
-    "categoria": "galletitas",
-    "precio": 1193,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Nak Yab Anill, presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/gbnya.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1283,
-    "nombre": "GAL BENJA 350grs ( NANKIN) (10u)",
-    "categoria": "galletitas",
-    "precio": 1193,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Nankin, presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/gbn.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1284,
-    "nombre": "GAL BENJA 350grs (YABILA) (10u)",
-    "categoria": "galletitas",
-    "precio": 1193,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Yabila, presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/gby.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1285,
-    "nombre": "GAL BENJA 350grs ( ANILLOS) (10u)",
-    "categoria": "galletitas",
-    "precio": 1193,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Anillos, presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/gba.png",
-    "destacado": false,
-    "nuevo": false
-  },
+  
   {
     "id": 1286,
     "nombre": "PEPA c/BAÑO DE CHOC.BENJAMIN 320gr (14u)",
@@ -1990,28 +1917,6 @@
     "nuevo": false
   },
   {
-    "id": 1290,
-    "nombre": "Bizcochito VARIOS%!!! DON SATUR 200grs(30u)",
-    "categoria": "galletitas",
-    "precio": 1288,
-    "stock": 50,
-    "descripcion": "Galletitas presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/bvds.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1291,
-    "nombre": "Magadalenas MAURI/SATUR (VARIOS)x192/200g(10u)",
-    "categoria": "galletitas",
-    "precio": 2198,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Varios, presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/mmsv.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
     "id": 1292,
     "nombre": "Magdalenas MAURI/SATUR (MARMOLADO)x 200g(10u)",
     "categoria": "galletitas",
@@ -2046,7 +1951,7 @@
   },
   {
     "id": 1295,
-    "nombre": "TALITAS DON SATUR x140g (TRADICI..) (20u)",
+    "nombre": "TALITAS DON SATUR x140g (CLASICAS) (20u)",
     "categoria": "galletitas",
     "precio": 1398,
     "stock": 50,
@@ -2063,17 +1968,6 @@
     "stock": 50,
     "descripcion": "Galletitas sabor Semilla, presentación por mayor (x140 gramos). Ideal para reventa en kiosco o almacén.",
     "imagen": "/productos/tdss.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1297,
-    "nombre": "OBLITA chica OBLEAS 46g(48u)(SURTIDO)",
-    "categoria": "galletitas",
-    "precio": 396,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Surtido, presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/ocos.png",
     "destacado": false,
     "nuevo": false
   },
@@ -2111,17 +2005,6 @@
     "nuevo": false
   },
   {
-    "id": 1301,
-    "nombre": "GRAN\"OBLITA\"OBLEA105g(48u)(SURTIDO)",
-    "categoria": "galletitas",
-    "precio": 765,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Surtido, presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/goos.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
     "id": 1302,
     "nombre": "GRAN\"OBLITA OBLEAx105 grs(48u)(FRUTILLA)",
     "categoria": "galletitas",
@@ -2154,72 +2037,8 @@
     "destacado": false,
     "nuevo": false
   },
-  {
-    "id": 1305,
-    "nombre": "Merengue BLANCO ARTESANOS100g(20u)",
-    "categoria": "galletitas",
-    "precio": 1298,
-    "stock": 50,
-    "descripcion": "Galletitas presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/mba.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1306,
-    "nombre": "Merengue COLORES ARTESANO 100g(20u)",
-    "categoria": "galletitas",
-    "precio": 1298,
-    "stock": 50,
-    "descripcion": "Galletitas presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/mca.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1307,
-    "nombre": "BANDEJA TRIANGULITO RONDA 150grs(30u)",
-    "categoria": "galletitas",
-    "precio": 1241,
-    "stock": 50,
-    "descripcion": "Galletitas presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/btr2.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1308,
-    "nombre": "MAFALDA triangulito BAND x150grs (18u)",
-    "categoria": "galletitas",
-    "precio": 1295,
-    "stock": 50,
-    "descripcion": "Galletitas presentación por mayor (x150 gramos). Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/mtb.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1309,
-    "nombre": "MAFALDA LARGUITAS...150gr (18u)",
-    "categoria": "galletitas",
-    "precio": 1153,
-    "stock": 50,
-    "descripcion": "Galletitas presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/ml.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1310,
-    "nombre": "TRIO galletitas chicas (VARIOS%) (20u)",
-    "categoria": "galletitas",
-    "precio": 924,
-    "stock": 50,
-    "descripcion": "Galletitas presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/tgcv.png",
-    "destacado": false,
-    "nuevo": false
-  },
+
+
   {
     "id": 1311,
     "nombre": "TRIO galletitas chicas (20u)(PEPAS)",
@@ -2264,94 +2083,7 @@
     "destacado": false,
     "nuevo": false
   },
-  {
-    "id": 1315,
-    "nombre": "PEPA 500GRS TRIO (PEPA) (10u)",
-    "categoria": "galletitas",
-    "precio": 2319,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Pepa, presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/ptp.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1316,
-    "nombre": "PEPA 500GRS TRIO (GLASY) (10u)",
-    "categoria": "galletitas",
-    "precio": 2496,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Glasy, presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/ptg.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1317,
-    "nombre": "TRIO GALLETITAS 500GR (VARIETTE) (10u)",
-    "categoria": "galletitas",
-    "precio": 2319,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Variette, presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/tgv.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1318,
-    "nombre": "TRIO GALLETITAS 500GR (VARIOS) (10u)",
-    "categoria": "galletitas",
-    "precio": 2190,
-    "stock": 50,
-    "descripcion": "Galletitas sabor Varios, presentación por mayor. Ideal para reventa en kiosco o almacén.",
-    "imagen": "/productos/tgv2.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1319,
-    "nombre": "AZUCAR TIPO \"A\" x 1 kgr (10u)",
-    "categoria": "varios",
-    "precio": 1248,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor. Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/ataxk.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1320,
-    "nombre": "ACEITE GIRASOL 900CC COCINERO (15u)",
-    "categoria": "varios",
-    "precio": 3989,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor. Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/agc.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1321,
-    "nombre": "ACEITE GIRASOL 900cc (CORTIJO) (15u)",
-    "categoria": "varios",
-    "precio": 2590,
-    "stock": 50,
-    "descripcion": "Producto de almacén variante Cortijo, presentación por mayor. Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/agc2.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1322,
-    "nombre": "BIDON ACEITE GIRASOL4,000cc(CORTIJO) (6u)",
-    "categoria": "varios",
-    "precio": 13500,
-    "stock": 50,
-    "descripcion": "Producto de almacén variante Cortijo, presentación por mayor. Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/bagc.png",
-    "destacado": false,
-    "nuevo": false
-  },
+
   {
     "id": 1323,
     "nombre": "YERBA TARAGUI FLEX 500g (10u)",
@@ -2396,259 +2128,7 @@
     "destacado": false,
     "nuevo": false
   },
-  {
-    "id": 1327,
-    "nombre": "DULCE DE BATATA x5 KGRS",
-    "categoria": "varios",
-    "precio": 12980,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor. Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/ddbk.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1328,
-    "nombre": "DULCE DE BATATA c/CHOC. X5kgrs",
-    "categoria": "varios",
-    "precio": 12980,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor. Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/ddbcc.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1329,
-    "nombre": "DULCE DE MEMBRILLO x5kgrs",
-    "categoria": "varios",
-    "precio": 14700,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor. Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/ddm.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1330,
-    "nombre": "ARVEJAS ARCOR x300gr (24u)",
-    "categoria": "varios",
-    "precio": 989,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor (x300 gramos). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/aa.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1331,
-    "nombre": "CHOCLO CREM.AMARILLO x300g (24u)",
-    "categoria": "varios",
-    "precio": 1635,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor (x300 gramos). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/cca.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1332,
-    "nombre": "CHOCLO EN GRANO x300gr (24u)",
-    "categoria": "varios",
-    "precio": 1798,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor (x300 gramos). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/ceg.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1333,
-    "nombre": "POROTOS ARCOR x 300grs (24u)",
-    "categoria": "varios",
-    "precio": 835,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor (x300 gramos). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/pax.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1334,
-    "nombre": "LENTEJAS LA CAM/Arcor. x300grs (24u)",
-    "categoria": "varios",
-    "precio": 1275,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor (x300 gramos). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/llca.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1335,
-    "nombre": "JARDINERA HORTyLEG.LC.300grs(24u)",
-    "categoria": "varios",
-    "precio": 969,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor. Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/jhl.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1336,
-    "nombre": "GARBANZOS ARCOR x300grs (24u)",
-    "categoria": "varios",
-    "precio": 1048,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor (x300 gramos). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/ga.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1337,
-    "nombre": "LA CAMPAGNOLA ATUN (AL ACEITE)x300grs",
-    "categoria": "varios",
-    "precio": 6790,
-    "stock": 50,
-    "descripcion": "Producto de almacén variante Al Aceite, presentación por mayor (x300 gramos). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/lcaaa.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1338,
-    "nombre": "MAY.NATURA 125gr (20u)",
-    "categoria": "varios",
-    "precio": 690,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor. Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/mn.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1339,
-    "nombre": "MAYONESA NATURA 250g (12u)",
-    "categoria": "varios",
-    "precio": 1438,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor. Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/mn2.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1340,
-    "nombre": "MOSTAZA NATURA x250gr (12u)",
-    "categoria": "varios",
-    "precio": 1130,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor (x250 gramos). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/mn3.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1341,
-    "nombre": "KETCHUP NATURA x250gr (12u)",
-    "categoria": "varios",
-    "precio": 1597,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor (x250 gramos). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/kn.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1342,
-    "nombre": "MAYONESA CADA DIA 125g (20u)",
-    "categoria": "varios",
-    "precio": 486,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor. Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/mcd.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1343,
-    "nombre": "ACEITE EN SOBRE x12cc CAJA X 200u",
-    "categoria": "varios",
-    "precio": 28900,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor (x12 cc). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/aescx.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1344,
-    "nombre": "SAL EN SOBRE X2GR CAJA x1000u",
-    "categoria": "varios",
-    "precio": 16890,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor (x2 gramos). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/sesc.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1345,
-    "nombre": "VINAGRE EN SOBRE x8cc x 200u",
-    "categoria": "varios",
-    "precio": 20350,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor (x8 cc). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/vesx.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1346,
-    "nombre": "JUGO de LIMON EN SOBRE x8cc x 200u",
-    "categoria": "varios",
-    "precio": 19800,
-    "stock": 50,
-    "descripcion": "Producto de almacén presentación por mayor (x8 cc). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/jdlesx.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1347,
-    "nombre": "MAYONESA EN SOBRE (NATURA) x12g x 192u",
-    "categoria": "varios",
-    "precio": 28900,
-    "stock": 50,
-    "descripcion": "Producto de almacén variante Natura, presentación por mayor (x12 gramos). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/mesnx.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1348,
-    "nombre": "KECHUP EN SOBRE (NATURA) x12g x 192u",
-    "categoria": "varios",
-    "precio": 28900,
-    "stock": 50,
-    "descripcion": "Producto de almacén variante Natura, presentación por mayor (x12 gramos). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/kesnx.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1349,
-    "nombre": "MOSTAZA EN SOBRE (NATURA) x10g x 192u",
-    "categoria": "varios",
-    "precio": 19890,
-    "stock": 50,
-    "descripcion": "Producto de almacén variante Natura, presentación por mayor (x10 gramos). Ideal para reventa en kiosco o distribuidora.",
-    "imagen": "/productos/mesnx2.png",
-    "destacado": false,
-    "nuevo": false
-  },
+ 
   {
     "id": 1350,
     "nombre": "Bombom Oblibom x 30 unid (NEGRO) (12u)",
@@ -2671,17 +2151,7 @@
     "destacado": false,
     "nuevo": false
   },
-  {
-    "id": 1352,
-    "nombre": "BONOBOM ORIGINAL NEGRO x30u (12u)",
-    "categoria": "chocolates",
-    "precio": 14670,
-    "stock": 50,
-    "descripcion": "Producto de chocolatería/repostería presentación por mayor (x30 unidades). Ideal para kiosco o distribuidora.",
-    "imagen": "/productos/bon.png",
-    "destacado": false,
-    "nuevo": false
-  },
+  
   {
     "id": 1353,
     "nombre": "Bombom surtidos BEL x 50 unid",
@@ -2738,19 +2208,8 @@
     "nuevo": false
   },
   {
-    "id": 1358,
-    "nombre": "Celofan Misky 25 grs x 30 unid (SURTIDO)",
-    "categoria": "chocolates",
-    "precio": 27692,
-    "stock": 50,
-    "descripcion": "Producto de chocolatería/repostería sabor Surtido, presentación por mayor (x30 unidades). Ideal para kiosco o distribuidora.",
-    "imagen": "/productos/cmgxus.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
     "id": 1359,
-    "nombre": "Hamlet x 43grs (BICOLOR)",
+    "nombre": "Hamlet x 43grs",
     "categoria": "chocolates",
     "precio": 938,
     "stock": 50,
@@ -2759,75 +2218,10 @@
     "destacado": false,
     "nuevo": false
   },
-  {
-    "id": 1360,
-    "nombre": "Hamlet x 43grs (BLANCO)",
-    "categoria": "chocolates",
-    "precio": 938,
-    "stock": 50,
-    "descripcion": "Producto de chocolatería/repostería sabor Blanco, presentación por mayor (x43 gramos). Ideal para kiosco o distribuidora.",
-    "imagen": "/productos/hxb2.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1361,
-    "nombre": "Hamlet x 43grs (NEGRO)",
-    "categoria": "chocolates",
-    "precio": 938,
-    "stock": 50,
-    "descripcion": "Producto de chocolatería/repostería sabor Negro, presentación por mayor (x43 gramos). Ideal para kiosco o distribuidora.",
-    "imagen": "/productos/hxn.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1362,
-    "nombre": "Hamlet x 43grs (FRUTILLA)",
-    "categoria": "chocolates",
-    "precio": 938,
-    "stock": 50,
-    "descripcion": "Producto de chocolatería/repostería sabor Frutilla, presentación por mayor (x43 gramos). Ideal para kiosco o distribuidora.",
-    "imagen": "/productos/hxf.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1363,
-    "nombre": "Hamlet x 43grs (CHOCOLATOSO)",
-    "categoria": "chocolates",
-    "precio": 938,
-    "stock": 50,
-    "descripcion": "Producto de chocolatería/repostería sabor Chocolatoso, presentación por mayor (x43 gramos). Ideal para kiosco o distribuidora.",
-    "imagen": "/productos/hxc.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1364,
-    "nombre": "Hamlet x 43grs (SURTIDO)",
-    "categoria": "chocolates",
-    "precio": 938,
-    "stock": 50,
-    "descripcion": "Producto de chocolatería/repostería sabor Surtido, presentación por mayor (x43 gramos). Ideal para kiosco o distribuidora.",
-    "imagen": "/productos/hxs.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1365,
-    "nombre": "MARRAKESH CAJA EXIB.X56u",
-    "categoria": "chocolates",
-    "precio": 18424,
-    "stock": 50,
-    "descripcion": "Producto de chocolatería/repostería presentación por mayor (x56 unidades). Ideal para kiosco o distribuidora.",
-    "imagen": "/productos/mce.png",
-    "destacado": false,
-    "nuevo": false
-  },
+ 
   {
     "id": 1366,
-    "nombre": "Marrakesh x 30grs x 12 unid",
+    "nombre": "Marrakesh x 30grs",
     "categoria": "chocolates",
     "precio": 3948,
     "stock": 50,
@@ -2838,7 +2232,7 @@
   },
   {
     "id": 1367,
-    "nombre": "RAPSODIA (clasica) 80g x\"\"24\"\" unid (6u)",
+    "nombre": "RAPSODIA (clasica) 80g",
     "categoria": "chocolates",
     "precio": 17278,
     "stock": 50,
@@ -2858,47 +2252,15 @@
     "destacado": false,
     "nuevo": false
   },
-  {
-    "id": 1369,
-    "nombre": "RAPSODIA FRACCION X 12U (6u)",
-    "categoria": "chocolates",
-    "precio": 8639,
-    "stock": 50,
-    "descripcion": "Producto de chocolatería/repostería presentación por mayor (x12 unidades). Ideal para kiosco o distribuidora.",
-    "imagen": "/productos/rfx.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1370,
-    "nombre": "PICNIC c/DL FRACCION X 20U",
-    "categoria": "chocolates",
-    "precio": 9200,
-    "stock": 50,
-    "descripcion": "Producto de chocolatería/repostería presentación por mayor (x20 unidades). Ideal para kiosco o distribuidora.",
-    "imagen": "/productos/pcdfx.png",
-    "destacado": false,
-    "nuevo": false
-  },
+
   {
     "id": 1371,
-    "nombre": "505/3TAZA Choc. MISKY x 100grs (10u/60u)",
+    "nombre": " Chocolate MISKY x 100grs (10u/60u)",
     "categoria": "chocolates",
     "precio": 3129,
     "stock": 50,
     "descripcion": "Producto de chocolatería/repostería presentación por mayor (x100 gramos). Ideal para kiosco o distribuidora.",
     "imagen": "/productos/cmx.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1372,
-    "nombre": "ALTEZA Choc.taza x 90grs(40/12u)",
-    "categoria": "chocolates",
-    "precio": 1530,
-    "stock": 50,
-    "descripcion": "Producto de chocolatería/repostería presentación por mayor (x90 gramos). Ideal para kiosco o distribuidora.",
-    "imagen": "/productos/actx.png",
     "destacado": false,
     "nuevo": false
   },
@@ -2924,39 +2286,7 @@
     "destacado": false,
     "nuevo": false
   },
-  {
-    "id": 1375,
-    "nombre": "Chocolatin MISKY (BL o NE) 8gx20 unid",
-    "categoria": "chocolates",
-    "precio": 6580,
-    "stock": 50,
-    "descripcion": "Producto de chocolatería/repostería sabor Bl O Ne, presentación por mayor (x20 unidades). Ideal para kiosco o distribuidora.",
-    "imagen": "/productos/cmbonu.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1376,
-    "nombre": "TABL.DAQUI. 70grs (32u)",
-    "categoria": "chocolates",
-    "precio": 1298,
-    "stock": 50,
-    "descripcion": "Producto de chocolatería/repostería presentación por mayor. Ideal para kiosco o distribuidora.",
-    "imagen": "/productos/td.png",
-    "destacado": false,
-    "nuevo": false
-  },
-  {
-    "id": 1377,
-    "nombre": "TABLETA ARCOR 80gr (VARIOS)",
-    "categoria": "chocolates",
-    "precio": 2989,
-    "stock": 50,
-    "descripcion": "Producto de chocolatería/repostería sabor Varios, presentación por mayor. Ideal para kiosco o distribuidora.",
-    "imagen": "/productos/tav.png",
-    "destacado": false,
-    "nuevo": false
-  },
+
   {
     "id": 1378,
     "nombre": "TABLETA ARCOR 80gr (DUO)(14u)",

@@ -621,3 +621,58 @@ PRODUCTOS Y CATEGORIAS SACADAS POR EL MOMENTO
 "destacado": false,
 "nuevo": false
 },
+{
+"id": 1360,
+"nombre": "Hamlet x 43grs (BLANCO)",
+"categoria": "chocolates",
+"precio": 938,
+"stock": 50,
+"descripcion": "Producto de chocolatería/repostería sabor Blanco, presentación por mayor (x43 gramos). Ideal para kiosco o distribuidora.",
+"imagen": "/productos/hxb2.png",
+"destacado": false,
+"nuevo": false
+},
+{
+"id": 1361,
+"nombre": "Hamlet x 43grs (NEGRO)",
+"categoria": "chocolates",
+"precio": 938,
+"stock": 50,
+"descripcion": "Producto de chocolatería/repostería sabor Negro, presentación por mayor (x43 gramos). Ideal para kiosco o distribuidora.",
+"imagen": "/productos/hxn.png",
+"destacado": false,
+"nuevo": false
+},
+{
+"id": 1362,
+"nombre": "Hamlet x 43grs (FRUTILLA)",
+"categoria": "chocolates",
+"precio": 938,
+"stock": 50,
+"descripcion": "Producto de chocolatería/repostería sabor Frutilla, presentación por mayor (x43 gramos). Ideal para kiosco o distribuidora.",
+"imagen": "/productos/hxf.png",
+"destacado": false,
+"nuevo": false
+},
+{
+"id": 1363,
+"nombre": "Hamlet x 43grs (CHOCOLATOSO)",
+"categoria": "chocolates",
+"precio": 938,
+"stock": 50,
+"descripcion": "Producto de chocolatería/repostería sabor Chocolatoso, presentación por mayor (x43 gramos). Ideal para kiosco o distribuidora.",
+"imagen": "/productos/hxc.png",
+"destacado": false,
+"nuevo": false
+},
+{
+"id": 1364,
+"nombre": "Hamlet x 43grs (SURTIDO)",
+"categoria": "chocolates",
+"precio": 938,
+"stock": 50,
+"descripcion": "Producto de chocolatería/repostería sabor Surtido, presentación por mayor (x43 gramos). Ideal para kiosco o distribuidora.",
+"imagen": "/productos/hxs.png",
+"destacado": false,
+"nuevo": false
+},
